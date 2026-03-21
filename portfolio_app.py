@@ -41,6 +41,7 @@ cv_data = {
         "linkedin": "https://www.linkedin.com/in/bonolo-angela-rentsi-99067a362/",
         "kaggle": "https://www.kaggle.com/angelarentsi",
     },
+    
     "education": [
         {
             "degree": "Masters of Science In Computer & Information Science(Data Science)",
@@ -52,7 +53,8 @@ cv_data = {
                 "Sound Analysis Systems",
                 "Academic writing",
             ],
-
+        }
+        {
             
             "degree": "Bachelor of Science Honours In Data Science",
             "institution": "Sol Plaatje University",
