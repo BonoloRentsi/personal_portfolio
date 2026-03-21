@@ -21,8 +21,8 @@ if "contact_submissions" not in st.session_state:
 # DATA
 # ─────────────────────────────────────────────
 cv_data = {
-    "name": "BBBBBBBBBBB",
-    "initials": "BB",
+    "name": "Bonolo Angela Rentsi",
+    "initials": "BAR",
     "title": "Data Scientist",
     "tagline": "Turning raw data into decisions that matter.",
     "bio": (
