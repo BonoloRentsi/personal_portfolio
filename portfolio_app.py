@@ -47,13 +47,13 @@ cv_data = {
             "degree": "Masters of Science In Computer & Information Science(Data Science)",
             "institution": "Sol Plaatje University",
             "period": "Jan 2026 – Present",
-            "grade": "NA",
+            "grade": "In progress",
             "highlights": [
                 "Advanced Research",
                 "Sound Analysis Systems",
                 "Academic writing",
             ],
-        }
+        },
         {
             
             "degree": "Bachelor of Science Honours In Data Science",
