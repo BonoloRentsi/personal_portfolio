@@ -34,19 +34,30 @@ cv_data = {
         "ML engineer, and research roles."
     ),
     "contact": {
-        "email": "bbbbbb@gmail.com",
-        "phone": "+27 888888888888",
+        "email": "bonolorentsi049@gmail.com",
+        "phone": "+2766 088 4845",
         "location": "Kimberley, South Africa",
-        "github": "https://github.com/bbbbb",
-        "linkedin": "https://linkedin.com/in/bbbb",
-        "kaggle": "https://www.kaggle.com/bbbb",
+        "github": "https://github.com/BonoloRentsi",
+        "linkedin": "https://www.linkedin.com/in/bonolo-angela-rentsi-99067a362/",
+        "kaggle": "https://www.kaggle.com/angelarentsi",
     },
     "education": [
         {
-            "degree": "BSc Honours — Computer Sciences",
+            "degree": "Masters of Science In Computer & Information Science(Data Science)",
             "institution": "Sol Plaatje University",
-            "period": "Jan 2025 – Present",
-            "grade": "78% average",
+            "period": "Jan 2026 – Present",
+            "grade": "NA",
+            "highlights": [
+                "Advanced Research",
+                "Sound Analysis Systems",
+                "Academic writing",
+            ],
+
+            
+            "degree": "Bachelor of Science Honours In Data Science",
+            "institution": "Sol Plaatje University",
+            "period": "January 2025 – December 2025",
+            "grade": "76% average",
             "highlights": [
                 "Advanced AI & deep learning research",
                 "Big data analytics and distributed systems",
@@ -54,9 +65,9 @@ cv_data = {
             ],
         },
         {
-            "degree": "BSc — Computer Science / Data Science",
+            "degree": "Bachelor of Science In Data Science",
             "institution": "Sol Plaatje University",
-            "period": "Jan 2022 – Dec 2024",
+            "period": "January 2022 – December 2024",
             "grade": "81% average",
             "highlights": [
                 "Machine learning specialisation",
