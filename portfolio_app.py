@@ -34,12 +34,12 @@ cv_data = {
         "ML engineer, and research roles."
     ),
     "contact": {
-        "email": "@gmail.com",
-        "phone": "+27000",
-        "location": "South Africa",
-        "github": "https://github.com/",
-        "linkedin": "https://www.linkedin.com/",
-        "kaggle": "https://www.kaggle.com/",
+        "email": "yourname@gmail.com",          # ← fill in real email
+        "phone": "+27 000 000 0000",
+        "location": "Kimberley, South Africa",
+        "github": "https://github.com/yourusername",     # ← add username
+        "linkedin": "https://www.linkedin.com/in/yourprofile",  # ← add /in/profile
+        "kaggle": "https://www.kaggle.com/yourusername",
     },
     
     "education": [
