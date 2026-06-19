@@ -1,429 +1,757 @@
 import streamlit as st
+from datetime import datetime
 
-# --------------------------------------------------
+# ─────────────────────────────────────────────
 # PAGE CONFIG
-# --------------------------------------------------
+# ─────────────────────────────────────────────
 st.set_page_config(
-    page_title="Bonolo Rentsi | AI Researcher",
-    page_icon="🧠",
-    layout="wide"
+    page_title="Bonolo Rentsi | Data Scientist",
+    page_icon="◈",
+    layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
-# --------------------------------------------------
-# CUSTOM CSS
-# --------------------------------------------------
-st.markdown("""
-<style>
+# ─────────────────────────────────────────────
+# SESSION STATE
+# ─────────────────────────────────────────────
+if "contact_submissions" not in st.session_state:
+    st.session_state.contact_submissions = []
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-html, body, [class*="css"]{
-    font-family: 'Inter', sans-serif;
+# ─────────────────────────────────────────────
+# DATA
+# ─────────────────────────────────────────────
+cv_data = {
+    "name": "Bonolo Rentsi",
+    "initials": "BR",
+    "title": "Data Scientist",
+    "tagline": "Turning raw data into decisions that matter.",
+    "bio": (
+        "I'm a data scientist based in Johannesburg, South Africa, "
+        "finishing an Honours degree at Sol Plaatje University. "
+        "I build end-to-end machine learning systems — from exploratory analysis "
+        "through production deployment — with a focus on computer vision, NLP, "
+        "and predictive modelling. I'm currently open to data scientist, "
+        "ML engineer, and research roles."
+    ),
+    "contact": {
+        "email": "yourname@gmail.com",
+        "phone": "+27 000 000 0000",
+        "location": "Johannesburg, South Africa",
+        "github": "https://github.com/yourusername",
+        "linkedin": "https://www.linkedin.com/in/yourprofile",
+        "kaggle": "https://www.kaggle.com/yourusername",
+    },
+    "education": [
+        {
+            "degree": "Masters of Science In Computer & Information Science (Data Science)",
+            "institution": "Sol Plaatje University",
+            "period": "Jan 2026 – Present",
+            "grade": "In progress",
+            "highlights": [
+                "Advanced Research",
+                "Sound Analysis Systems",
+                "Academic writing",
+            ],
+        },
+        {
+            "degree": "Bachelor of Science Honours In Data Science",
+            "institution": "Sol Plaatje University",
+            "period": "January 2025 – December 2025",
+            "grade": "76% average",
+            "highlights": [
+                "Advanced AI & deep learning research",
+                "Big data analytics and distributed systems",
+                "Research methodology and academic writing",
+            ],
+        },
+        {
+            "degree": "Bachelor of Science In Data Science",
+            "institution": "Sol Plaatje University",
+            "period": "January 2022 – December 2024",
+            "grade": "81% average",
+            "highlights": [
+                "Advanced Calculus",
+                "Programming",
+                "Linear Programming",
+                "Linear Algebra",
+            ],
+        },
+    ],
+    "experience": [
+        {
+            "title": "Peer Mentor",
+            "org": "Sol Plaatje University",
+            "period": "Jan 2025 – Present",
+            "points": [
+                "Provide academic guidance and study support to 50+ undergraduate students",
+                "Contributed to a 15% improvement in student module retention rates",
+                "Developed workshop materials and interactive study resources",
+            ],
+        },
+        {
+            "title": "Academic Support Specialist",
+            "org": "Sol Plaatje University",
+            "period": "Jan 2025 – Present",
+            "points": [
+                "Delivered 100+ hours of tutoring across core data science modules",
+                "Created interactive resources used by multiple cohorts",
+                "Mentored 20+ students through independent research projects",
+            ],
+        },
+        {
+            "title": "Teaching Assistant",
+            "org": "Homevale High School",
+            "period": "Jan 2023 – Dec 2023",
+            "points": [
+                "Assisted in STEM curriculum development for Grades 10–12",
+                "Tutored 30+ learners in computer science and mathematics",
+                "Introduced digital learning tools to supplement classroom instruction",
+            ],
+        },
+    ],
+    "projects": [
+        {
+            "title": "Skin Disease Detection",
+            "summary": "CNN-based classifier for dermatological conditions, achieving 94% accuracy on held-out test data.",
+            "tags": ["Python", "TensorFlow", "CNN", "OpenCV", "Flask"],
+            "github": "https://github.com/yourusername/skin-disease",
+            "kaggle": "https://www.kaggle.com/yourusername/skin-disease",
+            "status": "Completed",
+        },
+        {
+            "title": "Network Traffic Anomaly Detection",
+            "summary": "Real-time intrusion detection system using unsupervised ML to flag suspicious network behaviour.",
+            "tags": ["Python", "Scikit-learn", "Streamlit", "Cybersecurity"],
+            "github": "https://github.com/yourusername/network-traffic",
+            "kaggle": "https://www.kaggle.com/yourusername/network-traffic",
+            "status": "Active",
+        },
+        {
+            "title": "Breast Cancer Classification",
+            "summary": "Ensemble model achieving 97% accuracy with SHAP-based explainability for clinical interpretability.",
+            "tags": ["Python", "XGBoost", "Feature Engineering", "SHAP"],
+            "github": "https://github.com/yourusername/breast-cancer",
+            "kaggle": "https://www.kaggle.com/yourusername/breast-cancer",
+            "status": "Completed",
+        },
+        {
+            "title": "University Chatbot",
+            "summary": "Transformer-based NLP chatbot answering student queries about courses, schedules, and campus services.",
+            "tags": ["Python", "Transformers", "NLTK", "FastAPI", "Docker"],
+            "github": "https://github.com/yourusername/university-chatbot",
+            "kaggle": "https://www.kaggle.com/yourusername/university-chatbot",
+            "status": "In Progress",
+        },
+        {
+            "title": "Monkeypox Detection Using Deep Learning & Explainable AI with Federated Learning",
+            "summary": "Deep learning pipeline for monkeypox image classification, incorporating Explainable AI (XAI) techniques and federated learning to enable privacy-preserving model training across distributed medical datasets.",
+            "tags": ["Python", "TensorFlow", "Federated Learning", "XAI", "SHAP", "CNN"],
+            "github": "https://github.com/yourusername/monkeypox-detection",
+            "kaggle": "https://www.kaggle.com/yourusername/monkeypox-detection",
+            "status": "Completed",
+        },
+        {
+            "title": "Cryptographic Analysis System",
+            "summary": "System for analysing and evaluating cryptographic algorithms, supporting cipher identification, key analysis, and vulnerability assessment across classical and modern encryption schemes.",
+            "tags": ["Python", "Cryptography", "Security", "Algorithm Analysis"],
+            "github": "https://github.com/yourusername/crypto-analysis",
+            "kaggle": "https://www.kaggle.com/yourusername/crypto-analysis",
+            "status": "Completed",
+        },
+        {
+            "title": "Content-Based Filtering Recommender System",
+            "summary": "Recommender system using content-based filtering to deliver personalised suggestions by analysing item features and user preference profiles with TF-IDF and cosine similarity.",
+            "tags": ["Python", "Scikit-learn", "NLP", "TF-IDF", "Recommender Systems"],
+            "github": "https://github.com/yourusername/recommender-system",
+            "kaggle": "https://www.kaggle.com/yourusername/recommender-system",
+            "status": "Completed",
+        },
+    ],
+    "skills": {
+        "Programming": ["Python", "R", "SQL", "C++"],
+        "Machine Learning": ["Scikit-learn", "XGBoost", "TensorFlow", "PyTorch"],
+        "Data & Analytics": ["Pandas", "NumPy", "Spark", "Statistical Modelling"],
+        "Visualisation": ["Tableau", "Power BI", "Plotly", "Seaborn"],
+        "Infrastructure": ["Docker", "AWS", "Git / GitHub", "Linux", "CI/CD"],
+        "Databases": ["PostgreSQL", "MySQL", "MongoDB", "SQLite"],
+    },
+    "proficiency": [
+        ("Python", 95),
+        ("Machine Learning", 90),
+        ("Data Visualisation", 88),
+        ("SQL", 85),
+        ("Deep Learning", 82),
+    ],
 }
 
-.stApp{
-    background-color:#0B1120;
-}
-
-section.main{
-    background-color:#0B1120;
-}
-
-.hero{
-    padding-top:100px;
-    padding-bottom:100px;
-}
-
-.name{
-    font-size:70px;
-    font-weight:800;
-    color:white;
-}
-
-.title{
-    font-size:26px;
-    color:#38BDF8;
-    font-weight:600;
-}
-
-.tagline{
-    font-size:20px;
-    color:#CBD5E1;
-    max-width:700px;
-}
-
-.section-title{
-    font-size:42px;
-    font-weight:800;
-    color:white;
-    margin-top:60px;
-    margin-bottom:30px;
-}
-
-.card{
-    background:#111827;
-    padding:25px;
-    border-radius:20px;
-    border:1px solid #1E293B;
-}
-
-.skill{
-    display:inline-block;
-    background:#1E293B;
-    color:white;
-    padding:10px 16px;
-    border-radius:10px;
-    margin:5px;
-}
-
-.project-card{
-    background:#111827;
-    padding:25px;
-    border-radius:20px;
-    margin-bottom:20px;
-    border:1px solid #1E293B;
-}
-
-.project-title{
-    font-size:24px;
-    color:white;
-    font-weight:700;
-}
-
-.project-desc{
-    color:#CBD5E1;
-}
-
-.footer{
-    text-align:center;
-    color:#94A3B8;
-    margin-top:50px;
-    padding:20px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# --------------------------------------------------
-# HERO
-# --------------------------------------------------
-
-st.markdown("""
-<div class="hero">
-
-<div class="title">
-AI Researcher • Data Scientist • ML Engineer
-</div>
-
-<div class="name">
-Bonolo Rentsi
-</div>
-
-<div class="tagline">
-Building intelligent systems that transform data into
-real-world solutions using Artificial Intelligence,
-Deep Learning, Computer Vision, Explainable AI,
-and Federated Learning.
-</div>
-
-</div>
-""", unsafe_allow_html=True)
-
-col1,col2,col3=st.columns(3)
-
-with col1:
-    st.link_button("GitHub","https://github.com/placeholder")
-
-with col2:
-    st.link_button("LinkedIn","https://linkedin.com/in/placeholder")
-
-with col3:
-    st.link_button("Download CV","#")
-
-st.divider()
-
-# --------------------------------------------------
-# ABOUT
-# --------------------------------------------------
-
+# ─────────────────────────────────────────────
+# GLOBAL CSS
+# ─────────────────────────────────────────────
 st.markdown(
-    '<div class="section-title">About Me</div>',
-    unsafe_allow_html=True
-)
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
 
-col1,col2 = st.columns([1,2])
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-with col1:
-    st.image(
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43",
-        width=300
-    )
-
-with col2:
-    st.write("""
-    I am a passionate Data Scientist and AI Researcher
-    currently pursuing a Master's degree in Data Science.
-
-    My work focuses on:
-
-    • Artificial Intelligence
-
-    • Explainable AI
-
-    • Deep Learning
-
-    • Computer Vision
-
-    • Healthcare Analytics
-
-    • Federated Learning
-
-    • Astronomy & Space Weather Prediction
-
-    I enjoy transforming complex data into intelligent,
-    impactful solutions.
-    """)
-
-# --------------------------------------------------
-# EDUCATION
-# --------------------------------------------------
-
-st.markdown(
-    '<div class="section-title">Education</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown("""
-### 🎓 MSc Data Science
-**Sol Plaatje University**  
-2026 – Present
-
----
-
-### 🎓 BSc Honours Data Science
-**Sol Plaatje University**  
-2025
-
-Average: 76%
-
----
-
-### 🎓 BSc Data Science
-**Sol Plaatje University**  
-2022 – 2024
-
-Average: 81%
-""")
-
-# --------------------------------------------------
-# RESEARCH INTERESTS
-# --------------------------------------------------
-
-st.markdown(
-    '<div class="section-title">Research Interests</div>',
-    unsafe_allow_html=True
-)
-
-research = [
-    "Artificial Intelligence",
-    "Explainable AI",
-    "Federated Learning",
-    "Computer Vision",
-    "Healthcare Analytics",
-    "Speech Emotion Recognition",
-    "Deep Learning",
-    "Astronomy",
-    "Space Weather Prediction",
-    "Machine Learning"
-]
-
-for r in research:
-    st.markdown(
-        f'<span class="skill">{r}</span>',
-        unsafe_allow_html=True
-    )
-
-# --------------------------------------------------
-# FEATURED PROJECTS
-# --------------------------------------------------
-
-st.markdown(
-    '<div class="section-title">Featured Projects</div>',
-    unsafe_allow_html=True
-)
-
-projects = [
-    {
-        "title":"Monkeypox Detection using Deep Learning",
-        "description":"CNNs, Vision Transformers, Explainable AI and Federated Learning for medical image classification."
-    },
-    {
-        "title":"Emotion Detection from Speech",
-        "description":"LSTM, GRU and CNN-RNN architectures for emotion recognition from audio recordings."
-    },
-    {
-        "title":"Solar Flare Prediction",
-        "description":"Machine Learning models for predicting solar flare events using space weather data."
-    },
-    {
-        "title":"Career Compass",
-        "description":"AI-powered career guidance and recommendation platform."
-    },
-    {
-        "title":"Network Intrusion Detection",
-        "description":"Real-time anomaly detection system for network traffic."
-    },
-    {
-        "title":"Drug Recommendation System",
-        "description":"Hybrid recommendation engine using collaborative and content-based filtering."
+    html, body, [class*="css"] {
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 16px;
+        background: #0d2137 !important;
     }
-]
 
-for project in projects:
+    [data-testid="stAppViewContainer"],
+    [data-testid="stAppViewContainer"] > .main,
+    [data-testid="stAppViewContainer"] section.main > div {
+        background-color: #0d2137 !important;
+        color: #e8f0f7 !important;
+    }
 
-    st.markdown(f"""
-    <div class="project-card">
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] div,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] li,
+    [data-testid="stMarkdownContainer"] a {
+        font-family: 'DM Sans', sans-serif !important;
+    }
 
-    <div class="project-title">
-    {project['title']}
-    </div>
+    .block-container { padding: 0 !important; max-width: 100% !important; }
+    #MainMenu, footer, header { visibility: hidden; }
 
-    <br>
+    /* ── Hero ── */
+    .hero {
+        background: linear-gradient(135deg, #0d2137 0%, #132f4c 100%);
+        padding: 72px 60px 64px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -60px; right: -60px;
+        width: 320px; height: 320px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -40px; left: 40px;
+        width: 180px; height: 180px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.04);
+    }
+    .hero-kicker {
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #c8a96e !important;
+        margin-bottom: 16px;
+    }
+    .hero-name {
+        font-family: 'DM Serif Display', serif !important;
+        font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
+        font-weight: 400 !important;
+        color: #ffffff !important;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+    .hero-tagline {
+        font-size: 1.15rem !important;
+        font-weight: 300 !important;
+        color: rgba(255,255,255,0.78) !important;
+        margin-bottom: 36px;
+        max-width: 540px;
+        line-height: 1.6;
+    }
+    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 18px;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 6px;
+        color: rgba(255,255,255,0.92) !important;
+        text-decoration: none !important;
+        font-size: 13px !important;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: 0.2s ease;
+    }
+    .hero-link:hover {
+        border-color: rgba(255,255,255,0.6);
+        background-color: rgba(255,255,255,0.08);
+        color: #ffffff !important;
+    }
 
-    <div class="project-desc">
-    {project['description']}
-    </div>
+    /* ── Stats strip ── */
+    .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: #10263d;
+    }
+    .stat-cell {
+        padding: 28px 32px;
+        border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+        font-family: 'DM Serif Display', serif !important;
+        font-size: 2rem !important;
+        color: #ffffff !important;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    .stat-label {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #9bb0c4 !important;
+    }
 
-    </div>
-    """, unsafe_allow_html=True)
+    /* ── Nav tabs ── */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: #10263d;
+        padding: 0 60px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding: 14px 22px;
+        font-size: 13px !important;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: #9bb0c4 !important;
+        border-bottom: 2px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+        background: transparent !important;
+    }
+    .stTabs [aria-selected="true"] {
+        color: #ffffff !important;
+        border-bottom: 2px solid #c8a96e !important;
+    }
 
-# --------------------------------------------------
-# EXPERIENCE
-# --------------------------------------------------
+    /* ── Form elements ── */
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.12);
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 14px;
+        padding: 10px 14px;
+        background: #10263d;
+        color: #e8f0f7 !important;
+    }
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #7a9fbf;
+        box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+        background: #10263d;
+    }
+    .stTextInput label, .stTextArea label, .stSelectbox label {
+        color: #e8f0f7 !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+    }
+    .stButton > button {
+        background: #c8a96e !important;
+        color: #0d2137 !important;
+        border: none !important;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        width: 100%;
+        transition: 0.15s ease;
+    }
+    .stButton > button:hover { background: #b8945f !important; }
+    .stSelectbox > div > div {
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        background: #10263d;
+        font-size: 14px;
+        color: #e8f0f7 !important;
+    }
 
-st.markdown(
-    '<div class="section-title">Experience</div>',
-    unsafe_allow_html=True
+    /* ── Shared layout ── */
+    .tab-content {
+        padding: 52px 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .home-section {
+        padding: 52px 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .section-divider {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        margin: 0 60px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
-st.markdown("""
-### Academic Support Specialist
-Sol Plaatje University
+# ─────────────────────────────────────────────
+# HELPERS
+# ─────────────────────────────────────────────
+def kicker(text):
+    return f'<div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">{text}</div>'
 
-- Tutored Data Science modules
-- Supported student research
-- Developed learning resources
+def section_title(text):
+    return f'<div style="font-family:\'DM Serif Display\',serif;font-size:1.75rem;font-weight:400;color:#ffffff;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.10);">{text}</div>'
 
----
+def badge_period(text):
+    return f'<span style="display:inline-block;padding:4px 12px;background:#163852;color:#cfe0f0;border-radius:4px;font-size:12px;font-weight:500;white-space:nowrap;">{text}</span>'
 
-### Peer Mentor
-Sol Plaatje University
+def tag(text):
+    return f'<span style="display:inline-block;padding:4px 11px;background:#10263d;color:#d8e6f2;border:1px solid rgba(255,255,255,0.10);border-radius:4px;font-size:12px;font-weight:500;">{text}</span>'
 
-- Mentored undergraduate students
-- Academic guidance and support
-- Workshop facilitation
-
----
-
-### Teaching Assistant
-Homevale High School
-
-- STEM support
-- Mathematics tutoring
-- Computer Science instruction
-""")
-
-# --------------------------------------------------
-# SKILLS
-# --------------------------------------------------
-
+# ─────────────────────────────────────────────
+# ① HERO  (always visible)
+# ─────────────────────────────────────────────
+c = cv_data["contact"]
 st.markdown(
-    '<div class="section-title">Technical Skills</div>',
-    unsafe_allow_html=True
+    f"""
+    <div class="hero">
+        <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
+        <div class="hero-name">{cv_data['name']}</div>
+        <div class="hero-tagline">{cv_data['tagline']}</div>
+        <div class="hero-links">
+            <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
+            <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
+            <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
+            <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
-skills = {
-    "Programming":
-        ["Python","R","SQL","C++"],
+# ─────────────────────────────────────────────
+# ② STATS STRIP  (always visible)
+# ─────────────────────────────────────────────
+st.markdown(
+    """
+    <div class="stats-strip">
+        <div class="stat-cell">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Projects delivered</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">81%</div>
+            <div class="stat-label">Degree average</div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-    "Machine Learning":
-        ["TensorFlow","PyTorch","XGBoost","Scikit-Learn"],
+# ─────────────────────────────────────────────
+# ③ ABOUT  (homepage – no tab needed)
+# ─────────────────────────────────────────────
+st.markdown('<div class="home-section">', unsafe_allow_html=True)
+col_bio, col_offers = st.columns([3, 2], gap="large")
 
-    "Data Analysis":
-        ["Pandas","NumPy","Spark"],
+with col_bio:
+    tags_html = "".join(tag(t) for t in ["Open to work", "Data Science", "ML Engineering", "Research"])
+    st.markdown(
+        kicker("Background") + section_title("About me") +
+        f"""
+        <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
+            <p style="font-size:15px;color:#d8e6f2;line-height:1.7;margin:0;">{cv_data['bio']}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;">{tags_html}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    "Visualization":
-        ["Power BI","Tableau","Plotly"],
-
-    "Cloud & DevOps":
-        ["Docker","Git","AWS","Linux"]
-}
-
-for category,items in skills.items():
-
-    st.subheader(category)
-
-    for item in items:
+with col_offers:
+    st.markdown(kicker("What I bring") + section_title("Core strengths"), unsafe_allow_html=True)
+    strengths = [
+        ("AI & ML Systems", "Custom models from prototyping through production deployment."),
+        ("Data Insight", "Translating messy datasets into clear, actionable decisions."),
+        ("End-to-End Delivery", "Full project lifecycle ownership, solo or in a team."),
+        ("Communication", "Making technical findings accessible to non-technical audiences."),
+    ]
+    for title, desc in strengths:
         st.markdown(
-            f'<span class="skill">{item}</span>',
-            unsafe_allow_html=True
+            f"""
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px 22px;margin-bottom:12px;">
+                <div style="font-weight:600;font-size:15px;color:#ffffff;margin-bottom:4px;">{title}</div>
+                <div style="font-size:14px;color:#d0deea;line-height:1.55;">{desc}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
-# --------------------------------------------------
-# ACHIEVEMENTS
-# --------------------------------------------------
+st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 
-st.markdown(
-    '<div class="section-title">Achievements</div>',
-    unsafe_allow_html=True
-)
+# ─────────────────────────────────────────────
+# ④ FEATURED PROJECTS  (homepage – top 4)
+# ─────────────────────────────────────────────
+status_styles = {
+    "Completed": "background:#163d2b;color:#a9e4bf;",
+    "Active":    "background:#4a3a10;color:#f7d98a;",
+    "In Progress": "background:#163852;color:#cfe0f0;",
+}
 
-st.markdown("""
-🏆 BSc Data Science – 81% Average
+st.markdown('<div class="home-section">', unsafe_allow_html=True)
+st.markdown(kicker("Selected work") + section_title("Featured projects"), unsafe_allow_html=True)
 
-🏆 BSc Honours Data Science – 76% Average
+proj_cols = st.columns(2, gap="medium")
+for i, proj in enumerate(cv_data["projects"][:4]):
+    tags_html = "".join(tag(t) for t in proj["tags"])
+    badge_style = status_styles.get(proj["status"], "background:#163852;color:#cfe0f0;")
+    with proj_cols[i % 2]:
+        st.markdown(
+            f"""
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:24px 26px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                    <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#ffffff;line-height:1.3;">{proj['title']}</div>
+                    <span style="display:inline-block;padding:3px 10px;{badge_style}border-radius:4px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;">{proj['status']}</span>
+                </div>
+                <div style="font-size:14px;color:#d0deea;line-height:1.65;">{proj['summary']}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">{tags_html}</div>
+                <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+                    <a href="{proj['github']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">↗ View code</a>
+                    <a href="{proj['kaggle']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">◈ Kaggle</a>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-🏆 Multiple AI Healthcare Projects
+st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 
-🏆 Academic Tutor & Mentor
+# ─────────────────────────────────────────────
+# ⑤ SKILLS SNAPSHOT  (homepage)
+# ─────────────────────────────────────────────
+st.markdown('<div class="home-section">', unsafe_allow_html=True)
+col_cats, col_prof = st.columns([3, 2], gap="large")
 
-🏆 Research in Explainable AI and Federated Learning
+with col_cats:
+    st.markdown(kicker("Technical toolkit") + section_title("Skills by category"), unsafe_allow_html=True)
+    for category, items in cv_data["skills"].items():
+        tags_html = "".join(tag(item) for item in items)
+        st.markdown(
+            f"""
+            <div style="margin-bottom:28px;">
+                <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9bb0c4;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);">{category}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">{tags_html}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-🏆 Deep Learning Researcher
-""")
+with col_prof:
+    st.markdown(kicker("Self-assessed") + section_title("Proficiency"), unsafe_allow_html=True)
+    for skill, level in cv_data["proficiency"]:
+        st.markdown(
+            f"""
+            <div style="margin-bottom:18px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;color:#ffffff;margin-bottom:6px;">
+                    <span>{skill}</span>
+                    <span style="color:#9bb0c4;font-weight:400;">{level}%</span>
+                </div>
+                <div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
+                    <div style="height:100%;width:{level}%;background:#c8a96e;border-radius:2px;"></div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-# --------------------------------------------------
-# CONTACT
-# --------------------------------------------------
+st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 
-st.markdown(
-    '<div class="section-title">Contact</div>',
-    unsafe_allow_html=True
-)
+# ─────────────────────────────────────────────
+# ⑥ TABS  (deep-dive sections)
+# ─────────────────────────────────────────────
+tab_resume, tab_projects, tab_contact = st.tabs(["Résumé", "All Projects", "Contact"])
 
-st.write("""
-Let's build something impactful together.
-""")
+# ── TAB: RÉSUMÉ ──────────────────────────────
+with tab_resume:
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
 
-name = st.text_input("Name")
-email = st.text_input("Email")
-message = st.text_area("Message")
+    # Education
+    st.markdown(kicker("Academic history") + section_title("Education"), unsafe_allow_html=True)
+    for edu in cv_data["education"]:
+        highlights_html = "".join(
+            f"<li style='margin-bottom:6px;color:#d0deea;'>{h}</li>"
+            for h in edu["highlights"]
+        )
+        st.markdown(
+            f"""
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                    <div>
+                        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;line-height:1.3;">{edu['degree']}</div>
+                        <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{edu['institution']}</div>
+                    </div>
+                    {badge_period(edu['period'])}
+                </div>
+                <div style="font-size:13px;font-weight:600;color:#c8a96e;margin:10px 0 4px;">{edu['grade']}</div>
+                <ul style="padding-left:20px;margin-top:8px;font-size:14px;line-height:1.65;">{highlights_html}</ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-if st.button("Send Message"):
-    st.success("Message sent successfully!")
+    # Experience
+    st.markdown(kicker("Work history") + section_title("Experience"), unsafe_allow_html=True)
+    for exp in cv_data["experience"]:
+        points_html = "".join(f"<li style='margin-bottom:6px;color:#d0deea;'>{p}</li>" for p in exp["points"])
+        st.markdown(
+            f"""
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                    <div>
+                        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#ffffff;">{exp['title']}</div>
+                        <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{exp['org']}</div>
+                    </div>
+                    {badge_period(exp['period'])}
+                </div>
+                <ul style="padding-left:20px;margin-top:8px;font-size:14px;line-height:1.65;">{points_html}</ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-# --------------------------------------------------
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ── TAB: ALL PROJECTS ────────────────────────
+with tab_projects:
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
+    st.markdown(kicker("Full portfolio") + section_title("All projects"), unsafe_allow_html=True)
+
+    for proj in cv_data["projects"]:
+        tags_html = "".join(tag(t) for t in proj["tags"])
+        badge_style = status_styles.get(proj["status"], "background:#163852;color:#cfe0f0;")
+        st.markdown(
+            f"""
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                    <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#ffffff;">{proj['title']}</div>
+                    <span style="display:inline-block;padding:3px 10px;{badge_style}border-radius:4px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">{proj['status']}</span>
+                </div>
+                <div style="font-size:15px;color:#d0deea;line-height:1.65;margin-top:8px;">{proj['summary']}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">{tags_html}</div>
+                <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+                    <a href="{proj['github']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">↗ View code</a>
+                    <a href="{proj['kaggle']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">◈ Kaggle notebook</a>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ── TAB: CONTACT ─────────────────────────────
+with tab_contact:
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
+    col_info, col_form = st.columns([2, 3], gap="large")
+
+    with col_info:
+        st.markdown(kicker("Get in touch") + section_title("Contact"), unsafe_allow_html=True)
+
+        contact_data = cv_data["contact"]
+        contact_items = [
+            ("✉",  "Email",    f'<a href="mailto:{contact_data["email"]}" style="color:#cfe0f0;text-decoration:none;">{contact_data["email"]}</a>'),
+            ("📱", "Phone",    contact_data["phone"]),
+            ("◎",  "Location", contact_data["location"]),
+            ("⌥",  "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color:#cfe0f0;text-decoration:none;">{contact_data["github"].replace("https://", "")}</a>'),
+            ("↗",  "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#cfe0f0;text-decoration:none;">{contact_data["linkedin"].replace("https://", "").replace("www.", "")}</a>'),
+        ]
+
+        st.markdown('<div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:8px 24px;">', unsafe_allow_html=True)
+        for i, (icon, label, val) in enumerate(contact_items):
+            border = "border-bottom:1px solid rgba(255,255,255,0.08);" if i < len(contact_items) - 1 else ""
+            st.markdown(
+                f"""
+                <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;{border}">
+                    <div style="width:36px;height:36px;border-radius:6px;background:#163852;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;">{icon}</div>
+                    <div>
+                        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#9bb0c4;margin-bottom:2px;">{label}</div>
+                        <div style="font-size:15px;color:#ffffff;">{val}</div>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with col_form:
+        st.markdown(kicker("Send a message") + section_title("Say hello"), unsafe_allow_html=True)
+
+        with st.form("contact_form", clear_on_submit=True):
+            col_a, col_b = st.columns(2)
+            with col_a:
+                name = st.text_input("Name", placeholder="Your name")
+            with col_b:
+                email = st.text_input("Email", placeholder="you@example.com")
+
+            subject = st.selectbox(
+                "Subject",
+                ["", "Job opportunity", "Project inquiry", "Collaboration", "Question", "Other"],
+            )
+            message = st.text_area("Message", height=140, placeholder="Your message…")
+            submitted = st.form_submit_button("Send message")
+
+            if submitted:
+                if name and email and subject and message:
+                    st.session_state.contact_submissions.append({
+                        "name": name,
+                        "email": email,
+                        "subject": subject,
+                        "message": message,
+                        "timestamp": datetime.now().isoformat(),
+                    })
+                    st.success(f"Message received — thank you, {name}. I'll be in touch soon.")
+                else:
+                    st.warning("Please complete all fields before sending.")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ─────────────────────────────────────────────
 # FOOTER
-# --------------------------------------------------
-
-st.markdown("""
-<div class="footer">
-
-© 2026 Bonolo Rentsi
-
-AI Researcher • Data Scientist • Machine Learning Engineer
-
-Johannesburg, South Africa
-
-</div>
-""", unsafe_allow_html=True)
+# ─────────────────────────────────────────────
+st.markdown(
+    f"""
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding:32px 60px;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:12px;background:#0d2137;">
+        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#ffffff;">
+            {cv_data['name']}
+            <span style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:400;color:#9bb0c4;margin-left:10px;">{cv_data['title']}</span>
+        </div>
+        <div style="font-size:12px;color:#9bb0c4;">
+            © {datetime.now().year} · Johannesburg, South Africa
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
