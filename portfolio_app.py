@@ -319,6 +319,9 @@ st.markdown(
         border-bottom: 1px solid rgba(255,255,255,0.08);
         background: #10263d;
         padding: 0 60px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
     .stTabs [data-baseweb="tab"] {
         padding: 14px 22px;
@@ -377,6 +380,12 @@ st.markdown(
         font-size: 14px;
         color: #e8f0f7 !important;
     }
+    
+    .tab-content {
+        padding: 52px 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -398,65 +407,62 @@ def tag(text):
     return f'<span style="display:inline-block;padding:4px 11px;background:#10263d;color:#d8e6f2;border:1px solid rgba(255,255,255,0.10);border-radius:4px;font-size:12px;font-weight:500;">{text}</span>'
 
 # ─────────────────────────────────────────────
-# HERO
-# ─────────────────────────────────────────────
-c = cv_data["contact"]
-st.markdown(
-    f"""
-    <div class="hero">
-        <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
-        <div class="hero-name">{cv_data['name']}</div>
-        <div class="hero-tagline">{cv_data['tagline']}</div>
-        <div class="hero-links">
-            <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
-            <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
-            <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
-            <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-# ─────────────────────────────────────────────
-# STATS STRIP
-# ─────────────────────────────────────────────
-st.markdown(
-    """
-    <div class="stats-strip">
-        <div class="stat-cell">
-            <div class="stat-num">3+</div>
-            <div class="stat-label">Years experience</div>
-        </div>
-        <div class="stat-cell">
-            <div class="stat-num">15+</div>
-            <div class="stat-label">Projects delivered</div>
-        </div>
-        <div class="stat-cell">
-            <div class="stat-num">10+</div>
-            <div class="stat-label">Technologies</div>
-        </div>
-        <div class="stat-cell">
-            <div class="stat-num">81%</div>
-            <div class="stat-label">Degree average</div>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-# ─────────────────────────────────────────────
-# TABS
+# TABS (MOVED TO TOP)
 # ─────────────────────────────────────────────
 tab_about, tab_resume, tab_projects, tab_skills, tab_contact = st.tabs(
     ["About", "Résumé", "Projects", "Skills", "Contact"]
 )
 
 # ──────────────────────────
-# TAB 1 — ABOUT
+# TAB 1 — ABOUT (WITH HERO)
 # ──────────────────────────
 with tab_about:
-    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    # HERO SECTION
+    c = cv_data["contact"]
+    st.markdown(
+        f"""
+        <div class="hero">
+            <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
+            <div class="hero-name">{cv_data['name']}</div>
+            <div class="hero-tagline">{cv_data['tagline']}</div>
+            <div class="hero-links">
+                <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
+                <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
+                <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
+                <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # STATS STRIP
+    st.markdown(
+        """
+        <div class="stats-strip">
+            <div class="stat-cell">
+                <div class="stat-num">3+</div>
+                <div class="stat-label">Years experience</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Projects delivered</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-num">81%</div>
+                <div class="stat-label">Degree average</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # ABOUT CONTENT
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     col_bio, col_offers = st.columns([3, 2], gap="large")
 
     with col_bio:
@@ -497,7 +503,7 @@ with tab_about:
 # TAB 2 — RÉSUMÉ
 # ──────────────────────────
 with tab_resume:
-    st.markdown('<div class="section-wrap" style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     st.markdown(kicker("Academic history") + section_title("Education"), unsafe_allow_html=True)
 
     edu_cols = st.columns(1 if st.session_state.get("smaller_layout", True) else 2, gap="medium")
@@ -551,7 +557,7 @@ with tab_resume:
 # TAB 3 — PROJECTS
 # ──────────────────────────
 with tab_projects:
-    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     st.markdown(kicker("Selected work") + section_title("Projects"), unsafe_allow_html=True)
 
     status_styles = {
@@ -587,7 +593,7 @@ with tab_projects:
 # TAB 4 — SKILLS
 # ──────────────────────────
 with tab_skills:
-    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     col_cats, col_prof = st.columns([3, 2], gap="large")
 
     with col_cats:
@@ -628,7 +634,7 @@ with tab_skills:
 # TAB 5 — CONTACT
 # ──────────────────────────
 with tab_contact:
-    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     col_info, col_form = st.columns([2, 3], gap="large")
 
     with col_info:
