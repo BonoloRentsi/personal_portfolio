@@ -5,7 +5,7 @@ from datetime import datetime
 # PAGE CONFIG
 # ─────────────────────────────────────────────
 st.set_page_config(
-    page_title="Portfolio | Data Scientist",
+    page_title="Bonolo Rentsi | Data Scientist",
     page_icon="◈",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -21,12 +21,12 @@ if "contact_submissions" not in st.session_state:
 # DATA
 # ─────────────────────────────────────────────
 cv_data = {
-    "name": "BBBBBBB",
-    "initials": "BARBBB",
+    "name": "Bonolo Rentsi",
+    "initials": "BR",
     "title": "Data Scientist",
     "tagline": "Turning raw data into decisions that matter.",
     "bio": (
-        "I'm a data scientist based in Kimberley, South Africa, "
+        "I'm a data scientist based in Johannesburg, South Africa, "
         "finishing an Honours degree at Sol Plaatje University. "
         "I build end-to-end machine learning systems — from exploratory analysis "
         "through production deployment — with a focus on computer vision, NLP, "
@@ -36,7 +36,7 @@ cv_data = {
     "contact": {
         "email": "yourname@gmail.com",
         "phone": "+27 000 000 0000",
-        "location": "Kimberley, South Africa",
+        "location": "Johannesburg, South Africa",
         "github": "https://github.com/yourusername",
         "linkedin": "https://www.linkedin.com/in/yourprofile",
         "kaggle": "https://www.kaggle.com/yourusername",
@@ -188,204 +188,195 @@ cv_data = {
 # ─────────────────────────────────────────────
 st.markdown(
     """
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body, [class*="css"] {
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 16px;
-}
+    html, body, [class*="css"] {
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 16px;
+        background: #0d2137 !important;
+    }
 
-/* ── Force Streamlit background & text ── */
-[data-testid="stAppViewContainer"],
-[data-testid="stAppViewContainer"] > .main {
-    background-color: #0d2137 !important;
-}
+    [data-testid="stAppViewContainer"],
+    [data-testid="stAppViewContainer"] > .main,
+    [data-testid="stAppViewContainer"] section.main > div {
+        background-color: #0d2137 !important;
+        color: #e8f0f7 !important;
+    }
 
-[data-testid="stAppViewContainer"] section.main > div {
-    background-color: #0d2137 !important;
-}
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] div,
+    [data-testid="stMarkdownContainer"] span,
+    [data-testid="stMarkdownContainer"] li,
+    [data-testid="stMarkdownContainer"] a {
+        font-family: 'DM Sans', sans-serif !important;
+    }
 
-/* Force all markdown text to be visible */
-[data-testid="stMarkdownContainer"],
-[data-testid="stMarkdownContainer"] p,
-[data-testid="stMarkdownContainer"] div,
-[data-testid="stMarkdownContainer"] span,
-[data-testid="stMarkdownContainer"] li,
-[data-testid="stMarkdownContainer"] a {
-    font-family: 'DM Sans', sans-serif !important;
-}
+    .block-container { padding: 0 !important; max-width: 100% !important; }
+    #MainMenu, footer, header { visibility: hidden; }
 
-/* ── Layout ── */
-.block-container { padding: 0 !important; max-width: 100% !important; }
-#MainMenu, footer, header { visibility: hidden; }
+    .hero {
+        background: linear-gradient(135deg, #0d2137 0%, #132f4c 100%);
+        padding: 72px 60px 64px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -60px; right: -60px;
+        width: 320px; height: 320px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -40px; left: 40px;
+        width: 180px; height: 180px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.04);
+    }
+    .hero-kicker {
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #c8a96e !important;
+        margin-bottom: 16px;
+    }
+    .hero-name {
+        font-family: 'DM Serif Display', serif !important;
+        font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
+        font-weight: 400 !important;
+        color: #ffffff !important;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+    .hero-tagline {
+        font-size: 1.15rem !important;
+        font-weight: 300 !important;
+        color: rgba(255,255,255,0.78) !important;
+        margin-bottom: 36px;
+        max-width: 540px;
+        line-height: 1.6;
+    }
+    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 18px;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 6px;
+        color: rgba(255,255,255,0.92) !important;
+        text-decoration: none !important;
+        font-size: 13px !important;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: 0.2s ease;
+    }
+    .hero-link:hover {
+        border-color: rgba(255,255,255,0.6);
+        background-color: rgba(255,255,255,0.08);
+        color: #ffffff !important;
+    }
 
-/* ── Hero ── */
-.hero {
-    background-color: #0d2137;
-    padding: 72px 60px 64px;
-    position: relative;
-    overflow: hidden;
-}
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-}
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: 40px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.04);
-}
-.hero-kicker {
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #b8945f !important;
-    margin-bottom: 16px;
-}
-.hero-name {
-    font-family: 'DM Serif Display', serif !important;
-    font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
-    font-weight: 400 !important;
-    color: #ffffff !important;
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-.hero-tagline {
-    font-size: 1.15rem !important;
-    font-weight: 300 !important;
-    color: rgba(255,255,255,0.80) !important;
-    margin-bottom: 36px;
-    max-width: 520px;
-    line-height: 1.6;
-}
-.hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 18px;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 4px;
-    color: rgba(255,255,255,0.90) !important;
-    text-decoration: none !important;
-    font-size: 13px !important;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: border-color 0.2s, background-color 0.2s;
-}
-.hero-link:hover {
-    border-color: rgba(255,255,255,0.6);
-    background-color: rgba(255,255,255,0.08);
-    color: #ffffff !important;
-}
+    .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: #10263d;
+    }
+    .stat-cell {
+        padding: 28px 32px;
+        border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+        font-family: 'DM Serif Display', serif !important;
+        font-size: 2rem !important;
+        color: #ffffff !important;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    .stat-label {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #9bb0c4 !important;
+    }
 
-/* ── Stats strip ── */
-.stats-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #1a3a5c;
-    border-bottom: 1px solid #1a3a5c;
-    background: #1a3a5c;
-}
-.stat-cell {
-    padding: 28px 32px;
-    border-right: 1px solid #1a3a5c;
-}
-.stat-cell:last-child { border-right: none; }
-.stat-num {
-    font-family: 'DM Serif Display', serif !important;
-    font-size: 2rem !important;
-    color: #b8945f !important;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-.stat-label {
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #8a9aaa !important;
-}
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        background: #10263d;
+        padding: 0 60px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding: 14px 22px;
+        font-size: 13px !important;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: #9bb0c4 !important;
+        border-bottom: 2px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+        background: transparent !important;
+    }
+    .stTabs [aria-selected="true"] {
+        color: #ffffff !important;
+        border-bottom: 2px solid #c8a96e !important;
+    }
 
-/* ── Tabs ── */
-.stTabs [data-baseweb="tab-list"] {
-    gap: 0;
-    border-bottom: 1px solid #1a3a5c;
-    background: #1a3a5c;
-    padding: 0 60px;
-}
-.stTabs [data-baseweb="tab"] {
-    padding: 14px 22px;
-    font-size: 13px !important;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #8a9aaa !important;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-    background: transparent !important;
-}
-.stTabs [aria-selected="true"] {
-    color: #b8945f !important;
-    border-bottom: 2px solid #b8945f !important;
-}
-
-/* ── Form elements ── */
-.stTextInput > div > div > input,
-.stTextArea > div > div > textarea {
-    border-radius: 4px;
-    border: 1px solid #1a3a5c;
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 14px;
-    padding: 10px 14px;
-    background: #1a3a5c;
-    color: #e8f0f7 !important;
-}
-.stTextInput > div > div > input:focus,
-.stTextArea > div > div > textarea:focus {
-    border-color: #b8945f;
-    box-shadow: 0 0 0 3px rgba(13,33,55,0.10);
-    background: #23405a;
-}
-.stTextInput label, .stTextArea label, .stSelectbox label {
-    color: #e8f0f7 !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-}
-.stButton > button {
-    background: #b8945f !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 4px;
-    padding: 12px 28px;
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    width: 100%;
-    transition: background-color 0.15s;
-}
-.stButton > button:hover { background: #9f7f4d !important; }
-.stSelectbox > div > div {
-    border-radius: 4px;
-    border: 1px solid #1a3a5c !important;
-    background: #1a3a5c;
-    font-size: 14px;
-    color: #e8f0f7 !important;
-}
-</style>
-
-""",
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.12);
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 14px;
+        padding: 10px 14px;
+        background: #10263d;
+        color: #e8f0f7 !important;
+    }
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #7a9fbf;
+        box-shadow: 0 0 0 3px rgba(200,169,110,0.12);
+        background: #10263d;
+    }
+    .stTextInput label, .stTextArea label, .stSelectbox label {
+        color: #e8f0f7 !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+    }
+    .stButton > button {
+        background: #c8a96e !important;
+        color: #0d2137 !important;
+        border: none !important;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-family: 'DM Sans', sans-serif !important;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        width: 100%;
+        transition: 0.15s ease;
+    }
+    .stButton > button:hover { background: #b8945f !important; }
+    .stSelectbox > div > div {
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        background: #10263d;
+        font-size: 14px;
+        color: #e8f0f7 !important;
+    }
+    </style>
+    """,
     unsafe_allow_html=True,
 )
 
@@ -396,13 +387,13 @@ def kicker(text):
     return f'<div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">{text}</div>'
 
 def section_title(text):
-    return f'<div style="font-family:\'DM Serif Display\',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">{text}</div>'
+    return f'<div style="font-family:\'DM Serif Display\',serif;font-size:1.75rem;font-weight:400;color:#ffffff;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.10);">{text}</div>'
 
 def badge_period(text):
-    return f'<span style="display:inline-block;padding:4px 12px;background:#eef2f7;color:#1a3a5c;border-radius:2px;font-size:12px;font-weight:500;white-space:nowrap;">{text}</span>'
+    return f'<span style="display:inline-block;padding:4px 12px;background:#163852;color:#cfe0f0;border-radius:4px;font-size:12px;font-weight:500;white-space:nowrap;">{text}</span>'
 
 def tag(text):
-    return f'<span style="display:inline-block;padding:4px 11px;background:#f8f7f5;color:#4a4a4a;border:1px solid #e4e4e4;border-radius:2px;font-size:12px;font-weight:500;">{text}</span>'
+    return f'<span style="display:inline-block;padding:4px 11px;background:#10263d;color:#d8e6f2;border:1px solid rgba(255,255,255,0.10);border-radius:4px;font-size:12px;font-weight:500;">{text}</span>'
 
 # ─────────────────────────────────────────────
 # HERO
@@ -410,18 +401,18 @@ def tag(text):
 c = cv_data["contact"]
 st.markdown(
     f"""
-<div class="hero">
-    <div class="hero-kicker">Data Scientist · Kimberley, South Africa</div>
-    <div class="hero-name">{cv_data['name']}</div>
-    <div class="hero-tagline">{cv_data['tagline']}</div>
-    <div class="hero-links">
-        <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
-        <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
-        <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
-        <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
+    <div class="hero">
+        <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
+        <div class="hero-name">{cv_data['name']}</div>
+        <div class="hero-tagline">{cv_data['tagline']}</div>
+        <div class="hero-links">
+            <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
+            <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
+            <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
+            <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
+        </div>
     </div>
-</div>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
@@ -430,25 +421,25 @@ st.markdown(
 # ─────────────────────────────────────────────
 st.markdown(
     """
-<div class="stats-strip">
-    <div class="stat-cell">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Years experience</div>
+    <div class="stats-strip">
+        <div class="stat-cell">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Projects delivered</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">81%</div>
+            <div class="stat-label">Degree average</div>
+        </div>
     </div>
-    <div class="stat-cell">
-        <div class="stat-num">15+</div>
-        <div class="stat-label">Projects delivered</div>
-    </div>
-    <div class="stat-cell">
-        <div class="stat-num">10+</div>
-        <div class="stat-label">Technologies</div>
-    </div>
-    <div class="stat-cell">
-        <div class="stat-num">81%</div>
-        <div class="stat-label">Degree average</div>
-    </div>
-</div>
-""",
+    """,
     unsafe_allow_html=True,
 )
 
@@ -464,7 +455,6 @@ tab_about, tab_resume, tab_projects, tab_skills, tab_contact = st.tabs(
 # ──────────────────────────
 with tab_about:
     st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
-
     col_bio, col_offers = st.columns([3, 2], gap="large")
 
     with col_bio:
@@ -472,8 +462,8 @@ with tab_about:
         st.markdown(
             kicker("Background") + section_title("About me") +
             f"""
-            <div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
-                <p style="font-size:15px;color:#4a4a4a;line-height:1.65;margin:0;">{cv_data['bio']}</p>
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
+                <p style="font-size:15px;color:#d8e6f2;line-height:1.7;margin:0;">{cv_data['bio']}</p>
                 <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;">{tags_html}</div>
             </div>
             """,
@@ -482,7 +472,6 @@ with tab_about:
 
     with col_offers:
         st.markdown(kicker("What I bring") + section_title("Core strengths"), unsafe_allow_html=True)
-
         strengths = [
             ("AI & ML Systems", "Custom models from prototyping through production deployment."),
             ("Data Insight", "Translating messy datasets into clear, actionable decisions."),
@@ -492,9 +481,9 @@ with tab_about:
         for title, desc in strengths:
             st.markdown(
                 f"""
-                <div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:18px 22px;margin-bottom:12px;">
-                    <div style="font-weight:600;font-size:15px;color:#1a1a1a;margin-bottom:4px;">{title}</div>
-                    <div style="font-size:14px;color:#4a4a4a;line-height:1.55;">{desc}</div>
+                <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px 22px;margin-bottom:12px;">
+                    <div style="font-weight:600;font-size:15px;color:#ffffff;margin-bottom:4px;">{title}</div>
+                    <div style="font-size:14px;color:#d0deea;line-height:1.55;">{desc}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -502,50 +491,45 @@ with tab_about:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
 # ──────────────────────────
 # TAB 2 — RÉSUMÉ
 # ──────────────────────────
 with tab_resume:
     st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
-
     st.markdown(kicker("Academic history") + section_title("Education"), unsafe_allow_html=True)
 
     edu_cols = st.columns(2, gap="medium")
-    for col, edu in zip(edu_cols, cv_data["education"]):
+    for col, edu in zip(edu_cols, cv_data["education"][:2]):
         with col:
-            highlights_html = "".join(f"<li style='margin-bottom:6px;color:#4a4a4a;'>{h}</li>" for h in edu["highlights"])
+            highlights_html = "".join(f"<li style='margin-bottom:6px;color:#d0deea;'>{h}</li>" for h in edu["highlights"])
             st.markdown(
                 f"""
-                <div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+                <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                         <div>
-                            <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#1a1a1a;line-height:1.3;">{edu['degree']}</div>
-                            <div style="font-size:14px;color:#4a4a4a;margin-top:4px;">{edu['institution']}</div>
+                            <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#ffffff;line-height:1.3;">{edu['degree']}</div>
+                            <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{edu['institution']}</div>
                         </div>
                         {badge_period(edu['period'])}
                     </div>
-                    <div style="font-size:13px;font-weight:600;color:#1a3a5c;margin:10px 0 4px;">{edu['grade']}</div>
+                    <div style="font-size:13px;font-weight:600;color:#c8a96e;margin:10px 0 4px;">{edu['grade']}</div>
                     <ul style="padding-left:20px;margin-top:8px;font-size:14px;line-height:1.65;">{highlights_html}</ul>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
-    st.markdown(
-        f'<div style="margin-top:24px;">{kicker("Work history")}{section_title("Experience")}</div>',
-        unsafe_allow_html=True,
-    )
+    st.markdown(f'<div style="margin-top:24px;">{kicker("Work history")}{section_title("Experience")}</div>', unsafe_allow_html=True)
 
     for exp in cv_data["experience"]:
-        points_html = "".join(f"<li style='margin-bottom:6px;color:#4a4a4a;'>{p}</li>" for p in exp["points"])
+        points_html = "".join(f"<li style='margin-bottom:6px;color:#d0deea;'>{p}</li>" for p in exp["points"])
         st.markdown(
             f"""
-            <div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                     <div>
-                        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1a1a1a;">{exp['title']}</div>
-                        <div style="font-size:14px;color:#4a4a4a;margin-top:4px;">{exp['org']}</div>
+                        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#ffffff;">{exp['title']}</div>
+                        <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{exp['org']}</div>
                     </div>
                     {badge_period(exp['period'])}
                 </div>
@@ -557,36 +541,34 @@ with tab_resume:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
 # ──────────────────────────
 # TAB 3 — PROJECTS
 # ──────────────────────────
 with tab_projects:
     st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
-
     st.markdown(kicker("Selected work") + section_title("Projects"), unsafe_allow_html=True)
 
     status_styles = {
-        "Completed":   "background:#edf7f1;color:#1a7a42;",
-        "Active":      "background:#fef9ee;color:#9a6b00;",
-        "In Progress": "background:#eef2f7;color:#1a3a5c;",
+        "Completed": "background:#163d2b;color:#a9e4bf;",
+        "Active": "background:#4a3a10;color:#f7d98a;",
+        "In Progress": "background:#163852;color:#cfe0f0;",
     }
 
     for proj in cv_data["projects"]:
         tags_html = "".join(tag(t) for t in proj["tags"])
-        badge_style = status_styles.get(proj["status"], "background:#eef2f7;color:#1a3a5c;")
+        badge_style = status_styles.get(proj["status"], "background:#163852;color:#cfe0f0;")
         st.markdown(
             f"""
-            <div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+            <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
-                    <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1a1a1a;">{proj['title']}</div>
-                    <span style="display:inline-block;padding:3px 10px;{badge_style}border-radius:2px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">{proj['status']}</span>
+                    <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#ffffff;">{proj['title']}</div>
+                    <span style="display:inline-block;padding:3px 10px;{badge_style}border-radius:4px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">{proj['status']}</span>
                 </div>
-                <div style="font-size:15px;color:#4a4a4a;line-height:1.65;margin-top:8px;">{proj['summary']}</div>
+                <div style="font-size:15px;color:#d0deea;line-height:1.65;margin-top:8px;">{proj['summary']}</div>
                 <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">{tags_html}</div>
                 <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
-                    <a href="{proj['github']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid #e4e4e4;border-radius:4px;color:#4a4a4a;text-decoration:none;font-size:12px;font-weight:500;">↗ View code</a>
-                    <a href="{proj['kaggle']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid #e4e4e4;border-radius:4px;color:#4a4a4a;text-decoration:none;font-size:12px;font-weight:500;">◈ Kaggle notebook</a>
+                    <a href="{proj['github']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">↗ View code</a>
+                    <a href="{proj['kaggle']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid rgba(255,255,255,0.10);border-radius:6px;color:#e8f0f7;text-decoration:none;font-size:12px;font-weight:500;">◈ Kaggle notebook</a>
                 </div>
             </div>
             """,
@@ -595,24 +577,21 @@ with tab_projects:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
 # ──────────────────────────
 # TAB 4 — SKILLS
 # ──────────────────────────
 with tab_skills:
     st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
-
     col_cats, col_prof = st.columns([3, 2], gap="large")
 
     with col_cats:
         st.markdown(kicker("Technical toolkit") + section_title("Skills by category"), unsafe_allow_html=True)
-
         for category, items in cv_data["skills"].items():
             tags_html = "".join(tag(item) for item in items)
             st.markdown(
                 f"""
                 <div style="margin-bottom:28px;">
-                    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8a8a8a;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e4e4e4;">{category}</div>
+                    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9bb0c4;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);">{category}</div>
                     <div style="display:flex;flex-wrap:wrap;gap:6px;">{tags_html}</div>
                 </div>
                 """,
@@ -621,17 +600,16 @@ with tab_skills:
 
     with col_prof:
         st.markdown(kicker("Self-assessed") + section_title("Proficiency"), unsafe_allow_html=True)
-
         for skill, level in cv_data["proficiency"]:
             st.markdown(
                 f"""
                 <div style="margin-bottom:18px;">
-                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:6px;">
+                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;color:#ffffff;margin-bottom:6px;">
                         <span>{skill}</span>
-                        <span style="color:#8a8a8a;font-weight:400;">{level}%</span>
+                        <span style="color:#9bb0c4;font-weight:400;">{level}%</span>
                     </div>
-                    <div style="height:3px;background:#e4e4e4;border-radius:2px;overflow:hidden;">
-                        <div style="height:100%;width:{level}%;background:#1a3a5c;border-radius:2px;"></div>
+                    <div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:{level}%;background:#c8a96e;border-radius:2px;"></div>
                     </div>
                 </div>
                 """,
@@ -640,13 +618,11 @@ with tab_skills:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
 # ──────────────────────────
 # TAB 5 — CONTACT
 # ──────────────────────────
 with tab_contact:
     st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
-
     col_info, col_form = st.columns([2, 3], gap="large")
 
     with col_info:
@@ -654,43 +630,37 @@ with tab_contact:
 
         contact_data = cv_data["contact"]
         contact_items = [
-            ("✉",  "Email",    f'<a href="mailto:{contact_data["email"]}" style="color:#1a3a5c;text-decoration:none;">{contact_data["email"]}</a>'),
-            ("📱", "Phone",    contact_data["phone"]),
-            ("◎",  "Location", contact_data["location"]),
-            ("⌥",  "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["github"].replace("https://", "")}</a>'),
-            ("↗",  "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["linkedin"].replace("https://", "").replace("www.", "")}</a>'),
+            ("✉", "Email", f'<a href="mailto:{contact_data["email"]}" style="color:#cfe0f0;text-decoration:none;">{contact_data["email"]}</a>'),
+            ("📱", "Phone", contact_data["phone"]),
+            ("◎", "Location", contact_data["location"]),
+            ("⌥", "GitHub", f'<a href="{contact_data["github"]}" target="_blank" style="color:#cfe0f0;text-decoration:none;">{contact_data["github"].replace("https://", "")}</a>'),
+            ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#cfe0f0;text-decoration:none;">{contact_data["linkedin"].replace("https://", "").replace("www.", "")}</a>'),
         ]
 
-        # Opening card wrapper
-        st.markdown(
-            '<div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">',
-            unsafe_allow_html=True,
-        )
+        st.markdown('<div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:8px 24px;">', unsafe_allow_html=True)
 
-        # One st.markdown() call per item to avoid Streamlit's code-block fallback
         for i, (icon, label, val) in enumerate(contact_items):
-            border = "border-bottom:1px solid #e4e4e4;" if i < len(contact_items) - 1 else ""
+            border = "border-bottom:1px solid rgba(255,255,255,0.08);" if i < len(contact_items) - 1 else ""
             st.markdown(
                 f"""
                 <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;{border}">
-                    <div style="width:36px;height:36px;border-radius:4px;background:#eef2f7;
-                                display:flex;align-items:center;justify-content:center;
-                                flex-shrink:0;font-size:16px;line-height:1;">
-                        {icon}
+                    <div style="width:36px;height:36px;border-radius:6px;background:#163852;
+                    display:flex;align-items:center;justify-content:center;
+                    flex-shrink:0;font-size:16px;line-height:1;">
+                    {icon}
                     </div>
                     <div>
                         <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;
-                                    text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;">
-                            {label}
+                        text-transform:uppercase;color:#9bb0c4;margin-bottom:2px;">
+                        {label}
                         </div>
-                        <div style="font-size:15px;color:#1a1a1a;">{val}</div>
+                        <div style="font-size:15px;color:#ffffff;">{val}</div>
                     </div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
-        # Closing card wrapper
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col_form:
@@ -725,23 +695,22 @@ with tab_contact:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
 # ─────────────────────────────────────────────
 # FOOTER
 # ─────────────────────────────────────────────
 st.markdown(
     f"""
-<div style="border-top:1px solid #e4e4e4;padding:32px 60px;display:flex;justify-content:space-between;
-            align-items:center;flex-wrap:wrap;gap:12px;background:#f8f7f5;">
-    <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#1a1a1a;">
-        {cv_data['name']}
-        <span style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:400;
-                     color:#8a8a8a;margin-left:10px;">{cv_data['title']}</span>
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding:32px 60px;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:12px;background:#0d2137;">
+        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#ffffff;">
+            {cv_data['name']}
+            <span style="font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:400;
+            color:#9bb0c4;margin-left:10px;">{cv_data['title']}</span>
+        </div>
+        <div style="font-size:12px;color:#9bb0c4;">
+            © {datetime.now().year} · Johannesburg, South Africa
+        </div>
     </div>
-    <div style="font-size:12px;color:#8a8a8a;">
-        © {datetime.now().year} · Kimberley, South Africa
-    </div>
-</div>
-""",
+    """,
     unsafe_allow_html=True,
 )
