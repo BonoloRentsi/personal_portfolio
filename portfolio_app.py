@@ -962,34 +962,44 @@ with tab_contact:
 
     with col_info:
         st.markdown(
-            """
-        <div class="section-kicker">Get in touch</div>
-        <div class="section-title">Contact</div>
+        """
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Get in touch</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Contact</div>
         """,
-            unsafe_allow_html=True,
-        )
-
+        unsafe_allow_html=True,
+    )
+        contact_data = cv_data["contact"]
+        
         contact_items = [
-            ("✉", "Email", f'<a href="mailto:{c["email"]}" style="color: var(--accent);">{c["email"]}</a>'),
-            ("📱", "Phone", c["phone"]),
-            ("◎", "Location", c["location"]),
-            ("⌥", "GitHub", f'<a href="{c["github"]}" target="_blank" style="color: var(--accent);">{c["github"].replace("https://", "")}</a>'),
-            ("↗", "LinkedIn", f'<a href="{c["linkedin"]}" target="_blank" style="color: var(--accent);">{c["linkedin"].replace("https://", "")}</a>'),
-        ]
+        ("✉", "Email",    f'<a href="mailto:{contact_data["email"]}" style="color:#1a3a5c;text-decoration:none;">{contact_data["email"]}</a>'),
+        ("📱", "Phone",    contact_data["phone"]),
+        ("◎", "Location", contact_data["location"]),
+        ("⌥", "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["github"].replace("https://","")}</a>'),
+        ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["linkedin"].replace("https://","").replace("www.","")}</a>'),
+    ]
 
         items_html = ""
         for icon, label, val in contact_items:
             items_html += f"""
-            <div class="contact-item">
-                <div class="contact-icon">{icon}</div>
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #e4e4e4;">
+                <div style="width:36px;height:36px;border-radius:4px;background:#eef2f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;">
+                    {icon}
+                </div>
                 <div>
-                    <div class="contact-label">{label}</div>
-                    <div class="contact-val">{val}</div>
+                    <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;">
+                        {label}
+                    </div>
+                    <div style="font-size:15px;color:#1a1a1a;">
+                        {val}
+                    </div>
                 </div>
             </div>
-            """
+        """
 
-        st.markdown(f'<div class="card">{items_html}</div>', unsafe_allow_html=True)
+        st.markdown(
+        f'<div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">{items_html}</div>',
+        unsafe_allow_html=True,
+    )
 
     with col_form:
         st.markdown(
