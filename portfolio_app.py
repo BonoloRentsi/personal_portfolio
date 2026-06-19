@@ -497,31 +497,35 @@ with tab_about:
 # TAB 2 — RÉSUMÉ
 # ──────────────────────────
 with tab_resume:
-    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div class="section-wrap" style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
     st.markdown(kicker("Academic history") + section_title("Education"), unsafe_allow_html=True)
 
-    edu_cols = st.columns(2, gap="medium")
-    for col, edu in zip(edu_cols, cv_data["education"][:2]):
+    edu_cols = st.columns(1 if st.session_state.get("smaller_layout", True) else 2, gap="medium")
+    for i, edu in enumerate(cv_data["education"]):
+        col = edu_cols[0] if len(edu_cols) == 1 else edu_cols[i % 2]
         with col:
-            highlights_html = "".join(f"<li style='margin-bottom:6px;color:#d0deea;'>{h}</li>" for h in edu["highlights"])
+            highlights_html = "".join(
+                f"<li style='margin-bottom:6px;color:#d0deea;'>{h}</li>"
+                for h in edu["highlights"]
+            )
             st.markdown(
                 f"""
-                <div style="background:#10263d;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px 30px;margin-bottom:20px;">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-                        <div>
-                            <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#ffffff;line-height:1.3;">{edu['degree']}</div>
-                            <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{edu['institution']}</div>
-                        </div>
-                        {badge_period(edu['period'])}
+                <div class="card">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                    <div>
+                      <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;line-height:1.3;">{edu['degree']}</div>
+                      <div style="font-size:14px;color:#bfcfdd;margin-top:4px;">{edu['institution']}</div>
                     </div>
-                    <div style="font-size:13px;font-weight:600;color:#c8a96e;margin:10px 0 4px;">{edu['grade']}</div>
-                    <ul style="padding-left:20px;margin-top:8px;font-size:14px;line-height:1.65;">{highlights_html}</ul>
+                    {badge_period(edu['period'])}
+                  </div>
+                  <div style="font-size:13px;font-weight:600;color:#c8a96e;margin:10px 0 4px;">{edu['grade']}</div>
+                  <ul style="padding-left:20px;margin-top:8px;font-size:14px;line-height:1.65;">{highlights_html}</ul>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
 
-    st.markdown(f'<div style="margin-top:24px;">{kicker("Work history")}{section_title("Experience")}</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
     for exp in cv_data["experience"]:
         points_html = "".join(f"<li style='margin-bottom:6px;color:#d0deea;'>{p}</li>" for p in exp["points"])
