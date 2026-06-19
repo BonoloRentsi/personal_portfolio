@@ -978,28 +978,25 @@ with tab_contact:
         ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["linkedin"].replace("https://","").replace("www.","")}</a>'),
     ]
 
-        items_html = ""
-        for icon, label, val in contact_items:
-            items_html += f"""
+    st.markdown('<div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">', unsafe_allow_html=True)
+    for icon, label, val in contact_items:
+        st.markdown(
+            f"""
             <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #e4e4e4;">
                 <div style="width:36px;height:36px;border-radius:4px;background:#eef2f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;">
                     {icon}
                 </div>
                 <div>
-                    <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;">
-                        {label}
-                    </div>
-                    <div style="font-size:15px;color:#1a1a1a;">
-                        {val}
-                    </div>
+                    <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;">{label}</div>
+                    <div style="font-size:15px;color:#1a1a1a;">{val}</div>
                 </div>
             </div>
-        """
+            """,
+            unsafe_allow_html=True,
+        )
+        
 
-        st.markdown(
-        f'<div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">{items_html}</div>',
-        unsafe_allow_html=True,
-    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
     with col_form:
         st.markdown(
