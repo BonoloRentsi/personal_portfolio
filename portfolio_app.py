@@ -201,11 +201,11 @@ html, body, [class*="css"] {
 /* ── Force Streamlit background & text ── */
 [data-testid="stAppViewContainer"],
 [data-testid="stAppViewContainer"] > .main {
-    background-color: #d9e2e9 !important;  /* Darker blue-gray */
+    background-color: #0d2137 !important;
 }
 
 [data-testid="stAppViewContainer"] section.main > div {
-    background-color: #d9e2e9 !important;
+    background-color: #0d2137 !important;
 }
 
 /* Force all markdown text to be visible */
@@ -224,7 +224,7 @@ html, body, [class*="css"] {
 
 /* ── Hero ── */
 .hero {
-    background-color: #0d2137;  /* Very dark navy - professional */
+    background-color: #0d2137;
     padding: 72px 60px 64px;
     position: relative;
     overflow: hidden;
@@ -250,7 +250,7 @@ html, body, [class*="css"] {
     font-weight: 600 !important;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #b8945f !important;  /* Muted gold - refined */
+    color: #b8945f !important;
     margin-bottom: 16px;
 }
 .hero-name {
@@ -294,19 +294,19 @@ html, body, [class*="css"] {
 .stats-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #b8c8d4;  /* Blue-gray border */
-    border-bottom: 1px solid #b8c8d4;
-    background: #e8f0f7;  /* Light blue */
+    border-top: 1px solid #1a3a5c;
+    border-bottom: 1px solid #1a3a5c;
+    background: #1a3a5c;
 }
 .stat-cell {
     padding: 28px 32px;
-    border-right: 1px solid #b8c8d4;
+    border-right: 1px solid #1a3a5c;
 }
 .stat-cell:last-child { border-right: none; }
 .stat-num {
     font-family: 'DM Serif Display', serif !important;
     font-size: 2rem !important;
-    color: #0d2137 !important;  /* Very dark navy */
+    color: #b8945f !important;
     line-height: 1;
     margin-bottom: 4px;
 }
@@ -315,14 +315,14 @@ html, body, [class*="css"] {
     font-weight: 600 !important;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #5a6a7a !important;  /* Blue-gray */
+    color: #8a9aaa !important;
 }
 
 /* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] {
     gap: 0;
-    border-bottom: 1px solid #b8c8d4;  /* Blue-gray border */
-    background: #e8f0f7;  /* Light blue */
+    border-bottom: 1px solid #1a3a5c;
+    background: #1a3a5c;
     padding: 0 60px;
 }
 .stTabs [data-baseweb="tab"] {
@@ -330,40 +330,40 @@ html, body, [class*="css"] {
     font-size: 13px !important;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: #5a6a7a !important;  /* Blue-gray */
+    color: #8a9aaa !important;
     border-bottom: 2px solid transparent;
     transition: color 0.15s, border-color 0.15s;
     background: transparent !important;
 }
 .stTabs [aria-selected="true"] {
-    color: #0d2137 !important;  /* Very dark navy */
-    border-bottom: 2px solid #0d2137 !important;
+    color: #b8945f !important;
+    border-bottom: 2px solid #b8945f !important;
 }
 
 /* ── Form elements ── */
 .stTextInput > div > div > input,
 .stTextArea > div > div > textarea {
     border-radius: 4px;
-    border: 1px solid #b8c8d4;  /* Blue-gray border */
+    border: 1px solid #1a3a5c;
     font-family: 'DM Sans', sans-serif !important;
     font-size: 14px;
     padding: 10px 14px;
-    background: #e8f0f7;  /* Light blue */
-    color: #0a1520 !important;  /* Near black */
+    background: #1a3a5c;
+    color: #e8f0f7 !important;
 }
 .stTextInput > div > div > input:focus,
 .stTextArea > div > div > textarea:focus {
-    border-color: #5a7a9a;
+    border-color: #b8945f;
     box-shadow: 0 0 0 3px rgba(13,33,55,0.10);
-    background: #e8f0f7;
+    background: #23405a;
 }
 .stTextInput label, .stTextArea label, .stSelectbox label {
-    color: #0a1520 !important;  /* Near black */
+    color: #e8f0f7 !important;
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 .stButton > button {
-    background: #0d2137 !important;  /* Very dark navy */
+    background: #b8945f !important;
     color: white !important;
     border: none !important;
     border-radius: 4px;
@@ -375,13 +375,13 @@ html, body, [class*="css"] {
     width: 100%;
     transition: background-color 0.15s;
 }
-.stButton > button:hover { background: #0a1828 !important; }
+.stButton > button:hover { background: #9f7f4d !important; }
 .stSelectbox > div > div {
     border-radius: 4px;
-    border: 1px solid #b8c8d4 !important;  /* Blue-gray border */
-    background: #e8f0f7;  /* Light blue */
+    border: 1px solid #1a3a5c !important;
+    background: #1a3a5c;
     font-size: 14px;
-    color: #0a1520 !important;  /* Near black */
+    color: #e8f0f7 !important;
 }
 </style>
 
