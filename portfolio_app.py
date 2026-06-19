@@ -201,11 +201,11 @@ html, body, [class*="css"] {
 /* ── Force Streamlit background & text ── */
 [data-testid="stAppViewContainer"],
 [data-testid="stAppViewContainer"] > .main {
-    background-color: #f0ebe3 !important;  /* Warm cream */
+    background-color: #e8eef2 !important;  /* Soft blue-gray */
 }
 
 [data-testid="stAppViewContainer"] section.main > div {
-    background-color: #f0ebe3 !important;
+    background-color: #e8eef2 !important;
 }
 
 /* Force all markdown text to be visible */
@@ -224,7 +224,7 @@ html, body, [class*="css"] {
 
 /* ── Hero ── */
 .hero {
-    background-color: #162d44;  /* Richer navy */
+    background-color: #1a3a5c;  /* Navy - keeps contrast */
     padding: 72px 60px 64px;
     position: relative;
     overflow: hidden;
@@ -250,7 +250,7 @@ html, body, [class*="css"] {
     font-weight: 600 !important;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #c9a96e !important;  /* Warm gold */
+    color: #c8a96e !important;  /* Warm gold */
     margin-bottom: 16px;
 }
 .hero-name {
@@ -294,19 +294,19 @@ html, body, [class*="css"] {
 .stats-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid #d4ccc4;  /* Warm border */
-    border-bottom: 1px solid #d4ccc4;
-    background: #faf7f2;  /* Warm soft white */
+    border-top: 1px solid #c4d4dc;  /* Blue-gray border */
+    border-bottom: 1px solid #c4d4dc;
+    background: #f0f5f8;  /* Light blue-white */
 }
 .stat-cell {
     padding: 28px 32px;
-    border-right: 1px solid #d4ccc4;
+    border-right: 1px solid #c4d4dc;
 }
 .stat-cell:last-child { border-right: none; }
 .stat-num {
     font-family: 'DM Serif Display', serif !important;
     font-size: 2rem !important;
-    color: #162d44 !important;  /* Richer navy */
+    color: #1a3a5c !important;  /* Navy */
     line-height: 1;
     margin-bottom: 4px;
 }
@@ -315,14 +315,14 @@ html, body, [class*="css"] {
     font-weight: 600 !important;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #8a8a8a !important;
+    color: #5a6a7a !important;  /* Blue-gray */
 }
 
 /* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] {
     gap: 0;
-    border-bottom: 1px solid #d4ccc4;  /* Warm border */
-    background: #faf7f2;  /* Warm soft white */
+    border-bottom: 1px solid #c4d4dc;  /* Blue-gray border */
+    background: #f0f5f8;  /* Light blue-white */
     padding: 0 60px;
 }
 .stTabs [data-baseweb="tab"] {
@@ -330,40 +330,43 @@ html, body, [class*="css"] {
     font-size: 13px !important;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: #8a8a8a !important;
+    color: #5a6a7a !important;  /* Blue-gray */
     border-bottom: 2px solid transparent;
     transition: color 0.15s, border-color 0.15s;
     background: transparent !important;
 }
 .stTabs [aria-selected="true"] {
-    color: #162d44 !important;  /* Richer navy */
-    border-bottom: 2px solid #162d44 !important;
+    color: #1a3a5c !important;  /* Navy */
+    border-bottom: 2px solid #1a3a5c !important;
 }
+
+/* ── Card backgrounds (for all sections) ── */
+/* This will apply to all your inline card divs */
 
 /* ── Form elements ── */
 .stTextInput > div > div > input,
 .stTextArea > div > div > textarea {
     border-radius: 4px;
-    border: 1px solid #d4ccc4;  /* Warm border */
+    border: 1px solid #c4d4dc;  /* Blue-gray border */
     font-family: 'DM Sans', sans-serif !important;
     font-size: 14px;
     padding: 10px 14px;
-    background: #faf7f2;  /* Warm soft white */
-    color: #2d2d2d !important;  /* Soft black */
+    background: #f0f5f8;  /* Light blue-white */
+    color: #1a2a3a !important;  /* Dark blue-black */
 }
 .stTextInput > div > div > input:focus,
 .stTextArea > div > div > textarea:focus {
     border-color: #7a9fbf;
-    box-shadow: 0 0 0 3px rgba(22,45,68,0.07);
-    background: #faf7f2;
+    box-shadow: 0 0 0 3px rgba(26,58,92,0.07);
+    background: #f0f5f8;
 }
 .stTextInput label, .stTextArea label, .stSelectbox label {
-    color: #2d2d2d !important;  /* Soft black */
+    color: #1a2a3a !important;  /* Dark blue-black */
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 .stButton > button {
-    background: #162d44 !important;  /* Richer navy */
+    background: #1a3a5c !important;  /* Navy */
     color: white !important;
     border: none !important;
     border-radius: 4px;
@@ -375,13 +378,13 @@ html, body, [class*="css"] {
     width: 100%;
     transition: background-color 0.15s;
 }
-.stButton > button:hover { background: #112438 !important; }
+.stButton > button:hover { background: #152e4a !important; }
 .stSelectbox > div > div {
     border-radius: 4px;
-    border: 1px solid #d4ccc4 !important;  /* Warm border */
-    background: #faf7f2;  /* Warm soft white */
+    border: 1px solid #c4d4dc !important;  /* Blue-gray border */
+    background: #f0f5f8;  /* Light blue-white */
     font-size: 14px;
-    color: #2d2d2d !important;  /* Soft black */
+    color: #1a2a3a !important;  /* Dark blue-black */
 }
 </style>
 
