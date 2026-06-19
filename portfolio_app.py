@@ -41,41 +41,43 @@ cv_data = {
         "linkedin": "https://www.linkedin.com/in/yourprofile",
         "kaggle": "https://www.kaggle.com/yourusername",
     },
+
     "education": [
-        {
-            "degree": "Masters of Science In Computer & Information Science (Data Science)",
-            "institution": "Sol Plaatje University",
-            "period": "Jan 2026 – Present",
-            "grade": "In progress",
-            "highlights": [
-                "Advanced Research",
-                "Sound Analysis Systems",
-                "Academic writing",
-            ],
-        },
-        {
-            "degree": "Bachelor of Science Honours In Data Science",
-            "institution": "Sol Plaatje University",
-            "period": "January 2025 – December 2025",
-            "grade": "76% average",
-            "highlights": [
-                "Advanced AI & deep learning research",
-                "Big data analytics and distributed systems",
-                "Research methodology and academic writing",
-            ],
-        },
-        {
-            "degree": "Bachelor of Science In Data Science",
-            "institution": "Sol Plaatje University",
-            "period": "January 2022 – December 2024",
-            "grade": "81% average",
-            "highlights": [
-                "Machine learning specialisation",
-                "Data engineering and database systems",
-                "Statistics and probability theory",
-            ],
-        },
-    ],
+    {
+        "degree": "Masters of Science In Computer & Information Science (Data Science)",
+        "institution": "Sol Plaatje University",
+        "period": "Jan 2026 – Present",
+        "grade": "In progress",
+        "highlights": [
+            "Advanced Research",
+            "Sound Analysis Systems",
+            "Academic writing",
+        ],
+    },
+    {
+        "degree": "Bachelor of Science Honours In Data Science",
+        "institution": "Sol Plaatje University",
+        "period": "January 2025 – December 2025",
+        "grade": "76% average",
+        "highlights": [
+            "Advanced AI & deep learning research",
+            "Big data analytics and distributed systems",
+            "Research methodology and academic writing",
+        ],
+    },
+    {
+        "degree": "Bachelor of Science In Data Science",
+        "institution": "Sol Plaatje University",
+        "period": "January 2022 – December 2024",
+        "grade": "81% average",
+        "highlights": [
+            "Advanced Calculus",
+            "Programming",
+            "Linear Programming",
+            "Linear Algebra",
+        ],
+    },
+],
     "experience": [
         {
             "title": "Peer Mentor",
