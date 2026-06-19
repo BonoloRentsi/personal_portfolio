@@ -721,41 +721,31 @@ tab_about, tab_resume, tab_projects, tab_skills, tab_contact = st.tabs(
     ["About", "Résumé", "Projects", "Skills", "Contact"]
 )
 
-
 # ──────────────────────────
 # TAB 1 — ABOUT
 # ──────────────────────────
 with tab_about:
-    st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
 
     col_bio, col_offers = st.columns([3, 2], gap="large")
 
     with col_bio:
-        st.markdown(
-            f"""
-        <div class="section-kicker">Background</div>
-        <div class="section-title">About me</div>
-        <div class="card">
-            <p class="card-body">{cv_data['bio']}</p>
-            <div class="tags-row" style="margin-top: 20px;">
-                <span class="tag">Open to work</span>
-                <span class="tag">Data Science</span>
-                <span class="tag">ML Engineering</span>
-                <span class="tag">Research</span>
+        st.markdown(f"""
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Background</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">About me</div>
+        <div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;">
+            <p style="font-size:15px;color:#4a4a4a;line-height:1.65;">{cv_data['bio']}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;">
+                {''.join(f'<span style="display:inline-block;padding:4px 11px;background:#f8f7f5;color:#4a4a4a;border:1px solid #e4e4e4;border-radius:2px;font-size:12px;font-weight:500;">{t}</span>' for t in ['Open to work','Data Science','ML Engineering','Research'])}
             </div>
         </div>
-        """,
-            unsafe_allow_html=True,
-        )
+        """, unsafe_allow_html=True)
 
     with col_offers:
-        st.markdown(
-            """
-        <div class="section-kicker">What I bring</div>
-        <div class="section-title">Core strengths</div>
-        """,
-            unsafe_allow_html=True,
-        )
+        st.markdown("""
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">What I bring</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Core strengths</div>
+        """, unsafe_allow_html=True)
 
         strengths = [
             ("AI & ML Systems", "Custom models from prototyping through production deployment."),
@@ -763,249 +753,199 @@ with tab_about:
             ("End-to-End Delivery", "Full project lifecycle ownership, solo or in a team."),
             ("Communication", "Making technical findings accessible to non-technical audiences."),
         ]
-
         for title, desc in strengths:
-            st.markdown(
-                f"""
-            <div class="card" style="margin-bottom: 12px; padding: 18px 22px;">
-                <div style="font-weight: 600; font-size: 0.9375rem; color: var(--ink); margin-bottom: 4px;">{title}</div>
-                <div style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.55;">{desc}</div>
+            st.markdown(f"""
+            <div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:18px 22px;margin-bottom:12px;">
+                <div style="font-weight:600;font-size:15px;color:#1a1a1a;margin-bottom:4px;">{title}</div>
+                <div style="font-size:14px;color:#4a4a4a;line-height:1.55;">{desc}</div>
             </div>
-            """,
-                unsafe_allow_html=True,
-            )
+            """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ──────────────────────────
 # TAB 2 — RÉSUMÉ
 # ──────────────────────────
 with tab_resume:
-    st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
 
-    # Education
-    st.markdown(
-        """
-    <div class="section-kicker">Academic history</div>
-    <div class="section-title">Education</div>
-    """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("""
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Academic history</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Education</div>
+    """, unsafe_allow_html=True)
 
     edu_cols = st.columns(2, gap="medium")
     for col, edu in zip(edu_cols, cv_data["education"]):
         with col:
-            highlights_html = "".join(f"<li>{h}</li>" for h in edu["highlights"])
-            st.markdown(
-                f"""
-            <div class="card">
-                <div class="card-meta">
+            highlights_html = "".join(f"<li style='margin-bottom:6px;'>{h}</li>" for h in edu["highlights"])
+            st.markdown(f"""
+            <div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                     <div>
-                        <div class="card-title">{edu['degree']}</div>
-                        <div class="card-sub">{edu['institution']}</div>
+                        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1a1a1a;">{edu['degree']}</div>
+                        <div style="font-size:14px;color:#4a4a4a;margin-top:2px;">{edu['institution']}</div>
                     </div>
-                    <span class="badge-period">{edu['period']}</span>
+                    <span style="display:inline-block;padding:4px 12px;background:#eef2f7;color:#1a3a5c;border-radius:2px;font-size:12px;font-weight:500;white-space:nowrap;">{edu['period']}</span>
                 </div>
-                <div style="font-size: 13px; font-weight: 600; color: var(--accent); margin: 10px 0 4px;">{edu['grade']}</div>
-                <div class="card-body">
-                    <ul>{highlights_html}</ul>
-                </div>
+                <div style="font-size:13px;font-weight:600;color:#1a3a5c;margin:10px 0 4px;">{edu['grade']}</div>
+                <ul style="padding-left:20px;margin-top:8px;font-size:15px;color:#4a4a4a;line-height:1.65;">{highlights_html}</ul>
             </div>
-            """,
-                unsafe_allow_html=True,
-            )
+            """, unsafe_allow_html=True)
 
-    # Experience
-    st.markdown(
-        """
-    <div class="section-kicker" style="margin-top: 24px;">Work history</div>
-    <div class="section-title">Experience</div>
-    """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("""
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;margin-top:24px;">Work history</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Experience</div>
+    """, unsafe_allow_html=True)
 
     for exp in cv_data["experience"]:
-        points_html = "".join(f"<li>{p}</li>" for p in exp["points"])
-        st.markdown(
-            f"""
-        <div class="card">
-            <div class="card-meta">
+        points_html = "".join(f"<li style='margin-bottom:6px;'>{p}</li>" for p in exp["points"])
+        st.markdown(f"""
+        <div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div>
-                    <div class="card-title">{exp['title']}</div>
-                    <div class="card-sub">{exp['org']}</div>
+                    <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1a1a1a;">{exp['title']}</div>
+                    <div style="font-size:14px;color:#4a4a4a;margin-top:2px;">{exp['org']}</div>
                 </div>
-                <span class="badge-period">{exp['period']}</span>
+                <span style="display:inline-block;padding:4px 12px;background:#eef2f7;color:#1a3a5c;border-radius:2px;font-size:12px;font-weight:500;white-space:nowrap;">{exp['period']}</span>
             </div>
-            <div class="card-body">
-                <ul>{points_html}</ul>
-            </div>
+            <ul style="padding-left:20px;margin-top:8px;font-size:15px;color:#4a4a4a;line-height:1.65;">{points_html}</ul>
         </div>
-        """,
-            unsafe_allow_html=True,
-        )
+        """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ──────────────────────────
 # TAB 3 — PROJECTS
 # ──────────────────────────
 with tab_projects:
-    st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
 
-    st.markdown(
-        """
-    <div class="section-kicker">Selected work</div>
-    <div class="section-title">Projects</div>
-    """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("""
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Selected work</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Projects</div>
+    """, unsafe_allow_html=True)
+
+    status_styles = {
+        "Completed": "background:#edf7f1;color:#1a7a42;",
+        "Active":    "background:#fef9ee;color:#9a6b00;",
+        "In Progress": "background:#eef2f7;color:#1a3a5c;",
+    }
 
     for proj in cv_data["projects"]:
-        tags_html = "".join(f'<span class="tag">{t}</span>' for t in proj["tags"])
-
-        status_map = {
-            "Completed": "badge-status-done",
-            "Active": "badge-status-active",
-            "In Progress": "badge-status-wip",
-        }
-        badge_cls = status_map.get(proj["status"], "badge-status-wip")
-
-        st.markdown(
-            f"""
-        <div class="card">
-            <div class="card-meta">
-                <div>
-                    <div class="card-title">{proj['title']}</div>
-                </div>
-                <span class="{badge_cls}">{proj['status']}</span>
+        tags_html = "".join(
+            f'<span style="display:inline-block;padding:4px 11px;background:#f8f7f5;color:#4a4a4a;border:1px solid #e4e4e4;border-radius:2px;font-size:12px;font-weight:500;">{t}</span>'
+            for t in proj["tags"]
+        )
+        badge_style = status_styles.get(proj["status"], "background:#eef2f7;color:#1a3a5c;")
+        st.markdown(f"""
+        <div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:28px 30px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:#1a1a1a;">{proj['title']}</div>
+                <span style="display:inline-block;padding:3px 10px;{badge_style}border-radius:2px;font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">{proj['status']}</span>
             </div>
-            <div class="card-body" style="margin-top: 8px;">{proj['summary']}</div>
-            <div class="tags-row">{tags_html}</div>
-            <div class="proj-links">
-                <a href="{proj['github']}" target="_blank" class="proj-link">↗ View code</a>
-                <a href="{proj['kaggle']}" target="_blank" class="proj-link">◈ Kaggle notebook</a>
+            <div style="font-size:15px;color:#4a4a4a;line-height:1.65;margin-top:8px;">{proj['summary']}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">{tags_html}</div>
+            <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+                <a href="{proj['github']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid #e4e4e4;border-radius:4px;color:#4a4a4a;text-decoration:none;font-size:12px;font-weight:500;">↗ View code</a>
+                <a href="{proj['kaggle']}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border:1px solid #e4e4e4;border-radius:4px;color:#4a4a4a;text-decoration:none;font-size:12px;font-weight:500;">◈ Kaggle notebook</a>
             </div>
         </div>
-        """,
-            unsafe_allow_html=True,
-        )
+        """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ──────────────────────────
 # TAB 4 — SKILLS
 # ──────────────────────────
 with tab_skills:
-    st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
 
     col_cats, col_prof = st.columns([3, 2], gap="large")
 
     with col_cats:
-        st.markdown(
-            """
-        <div class="section-kicker">Technical toolkit</div>
-        <div class="section-title">Skills by category</div>
-        """,
-            unsafe_allow_html=True,
-        )
+        st.markdown("""
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Technical toolkit</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Skills by category</div>
+        """, unsafe_allow_html=True)
 
         for category, items in cv_data["skills"].items():
-            tags_html = "".join(f'<span class="tag">{item}</span>' for item in items)
-            st.markdown(
-                f"""
-            <div class="skills-group">
-                <div class="skills-group-title">{category}</div>
-                <div class="tags-row" style="margin-top: 0;">{tags_html}</div>
-            </div>
-            """,
-                unsafe_allow_html=True,
+            tags_html = "".join(
+                f'<span style="display:inline-block;padding:4px 11px;background:#f8f7f5;color:#4a4a4a;border:1px solid #e4e4e4;border-radius:2px;font-size:12px;font-weight:500;">{item}</span>'
+                for item in items
             )
+            st.markdown(f"""
+            <div style="margin-bottom:28px;">
+                <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8a8a8a;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e4e4e4;">{category}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">{tags_html}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
     with col_prof:
-        st.markdown(
-            """
-        <div class="section-kicker">Self-assessed</div>
-        <div class="section-title">Proficiency</div>
-        """,
-            unsafe_allow_html=True,
-        )
+        st.markdown("""
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Self-assessed</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Proficiency</div>
+        """, unsafe_allow_html=True)
 
         for skill, level in cv_data["proficiency"]:
-            st.markdown(
-                f"""
-            <div class="prog-row">
-                <div class="prog-header">
+            st.markdown(f"""
+            <div style="margin-bottom:18px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:6px;">
                     <span>{skill}</span>
-                    <span style="color: var(--ink-3); font-weight: 400;">{level}%</span>
+                    <span style="color:#8a8a8a;font-weight:400;">{level}%</span>
                 </div>
-                <div class="prog-track">
-                    <div class="prog-fill" style="width: {level}%;"></div>
+                <div style="height:3px;background:#e4e4e4;border-radius:2px;overflow:hidden;">
+                    <div style="height:100%;width:{level}%;background:#1a3a5c;border-radius:2px;"></div>
                 </div>
             </div>
-            """,
-                unsafe_allow_html=True,
-            )
+            """, unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # ──────────────────────────
 # TAB 5 — CONTACT
 # ──────────────────────────
 with tab_contact:
-    st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
+    st.markdown('<div style="padding:52px 60px;max-width:1200px;margin:0 auto;">', unsafe_allow_html=True)
 
     col_info, col_form = st.columns([2, 3], gap="large")
 
     with col_info:
-        st.markdown(
-        """
+        st.markdown("""
         <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Get in touch</div>
         <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Contact</div>
-        """,
-        unsafe_allow_html=True,
-    )
-        contact_data = cv_data["contact"]
-        
-        contact_items = [
-        ("✉", "Email",    f'<a href="mailto:{contact_data["email"]}" style="color:#1a3a5c;text-decoration:none;">{contact_data["email"]}</a>'),
-        ("📱", "Phone",    contact_data["phone"]),
-        ("◎", "Location", contact_data["location"]),
-        ("⌥", "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["github"].replace("https://","")}</a>'),
-        ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["linkedin"].replace("https://","").replace("www.","")}</a>'),
-    ]
+        """, unsafe_allow_html=True)
 
-    st.markdown('<div style="background:#ffffff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">', unsafe_allow_html=True)
-    for icon, label, val in contact_items:
-        st.markdown(
-            f"""
+        contact_data = cv_data["contact"]
+        contact_items = [
+            ("✉",  "Email",    f'<a href="mailto:{contact_data["email"]}" style="color:#1a3a5c;text-decoration:none;">{contact_data["email"]}</a>'),
+            ("📱", "Phone",    contact_data["phone"]),
+            ("◎",  "Location", contact_data["location"]),
+            ("⌥",  "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["github"].replace("https://","")}</a>'),
+            ("↗",  "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color:#1a3a5c;text-decoration:none;">{contact_data["linkedin"].replace("https://","").replace("www.","")}</a>'),
+        ]
+
+        st.markdown('<div style="background:#fff;border:1px solid #e4e4e4;border-radius:8px;padding:8px 24px;">', unsafe_allow_html=True)
+        for icon, label, val in contact_items:
+            st.markdown(f"""
             <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #e4e4e4;">
-                <div style="width:36px;height:36px;border-radius:4px;background:#eef2f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;">
-                    {icon}
-                </div>
+                <div style="width:36px;height:36px;border-radius:4px;background:#eef2f7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;">{icon}</div>
                 <div>
                     <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;">{label}</div>
                     <div style="font-size:15px;color:#1a1a1a;">{val}</div>
                 </div>
             </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        
-
-    st.markdown('</div>', unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     with col_form:
-        st.markdown(
-            """
-        <div class="section-kicker">Send a message</div>
-        <div class="section-title">Say hello</div>
-        """,
-            unsafe_allow_html=True,
-        )
+        st.markdown("""
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c8a96e;margin-bottom:8px;">Send a message</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.75rem;font-weight:400;color:#1a1a1a;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #e4e4e4;">Say hello</div>
+        """, unsafe_allow_html=True)
 
         with st.form("contact_form", clear_on_submit=True):
             col_a, col_b = st.columns(2)
@@ -1019,26 +959,20 @@ with tab_contact:
                 ["", "Job opportunity", "Project inquiry", "Collaboration", "Question", "Other"],
             )
             message = st.text_area("Message", height=140, placeholder="Your message…")
-
             submitted = st.form_submit_button("Send message")
 
             if submitted:
                 if name and email and subject and message:
-                    st.session_state.contact_submissions.append(
-                        {
-                            "name": name,
-                            "email": email,
-                            "subject": subject,
-                            "message": message,
-                            "timestamp": datetime.now().isoformat(),
-                        }
-                    )
+                    st.session_state.contact_submissions.append({
+                        "name": name, "email": email,
+                        "subject": subject, "message": message,
+                        "timestamp": datetime.now().isoformat(),
+                    })
                     st.success(f"Message received — thank you, {name}. I'll be in touch soon.")
                 else:
                     st.warning("Please complete all fields before sending.")
 
-    st.markdown("</div>", unsafe_allow_html=True)
-
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────
 # FOOTER
