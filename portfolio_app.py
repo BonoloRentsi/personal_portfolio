@@ -16,6 +16,8 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 if "contact_submissions" not in st.session_state:
     st.session_state.contact_submissions = []
+if "selected_tab" not in st.session_state:
+    st.session_state.selected_tab = None
 
 # ─────────────────────────────────────────────
 # DATA
@@ -337,6 +339,13 @@ st.markdown(
         color: #ffffff !important;
         border-bottom: 2px solid #c8a96e !important;
     }
+    
+    .tab-placeholder {
+        padding: 80px 60px;
+        text-align: center;
+        color: #9bb0c4;
+        font-size: 15px;
+    }
 
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea {
@@ -407,61 +416,64 @@ def tag(text):
     return f'<span style="display:inline-block;padding:4px 11px;background:#10263d;color:#d8e6f2;border:1px solid rgba(255,255,255,0.10);border-radius:4px;font-size:12px;font-weight:500;">{text}</span>'
 
 # ─────────────────────────────────────────────
-# TABS (MOVED TO TOP)
+# HERO (FIRST PAGE - ALWAYS VISIBLE)
+# ─────────────────────────────────────────────
+c = cv_data["contact"]
+st.markdown(
+    f"""
+    <div class="hero">
+        <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
+        <div class="hero-name">{cv_data['name']}</div>
+        <div class="hero-tagline">{cv_data['tagline']}</div>
+        <div class="hero-links">
+            <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
+            <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
+            <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
+            <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ─────────────────────────────────────────────
+# STATS STRIP
+# ─────────────────────────────────────────────
+st.markdown(
+    """
+    <div class="stats-strip">
+        <div class="stat-cell">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Projects delivered</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-num">81%</div>
+            <div class="stat-label">Degree average</div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ─────────────────────────────────────────────
+# TABS (AFTER HERO, NO AUTO-SELECTION)
 # ─────────────────────────────────────────────
 tab_about, tab_resume, tab_projects, tab_skills, tab_contact = st.tabs(
     ["About", "Résumé", "Projects", "Skills", "Contact"]
 )
 
 # ──────────────────────────
-# TAB 1 — ABOUT (WITH HERO)
+# TAB 1 — ABOUT
 # ──────────────────────────
 with tab_about:
-    # HERO SECTION
-    c = cv_data["contact"]
-    st.markdown(
-        f"""
-        <div class="hero">
-            <div class="hero-kicker">Data Scientist · Johannesburg, South Africa</div>
-            <div class="hero-name">{cv_data['name']}</div>
-            <div class="hero-tagline">{cv_data['tagline']}</div>
-            <div class="hero-links">
-                <a href="mailto:{c['email']}" class="hero-link">✉ Email</a>
-                <a href="{c['github']}" target="_blank" class="hero-link">⌥ GitHub</a>
-                <a href="{c['kaggle']}" target="_blank" class="hero-link">◈ Kaggle</a>
-                <a href="{c['linkedin']}" target="_blank" class="hero-link">↗ LinkedIn</a>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    
-    # STATS STRIP
-    st.markdown(
-        """
-        <div class="stats-strip">
-            <div class="stat-cell">
-                <div class="stat-num">3+</div>
-                <div class="stat-label">Years experience</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num">15+</div>
-                <div class="stat-label">Projects delivered</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num">10+</div>
-                <div class="stat-label">Technologies</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num">81%</div>
-                <div class="stat-label">Degree average</div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    
-    # ABOUT CONTENT
     st.markdown('<div class="tab-content">', unsafe_allow_html=True)
     col_bio, col_offers = st.columns([3, 2], gap="large")
 
