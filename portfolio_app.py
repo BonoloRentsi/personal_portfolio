@@ -959,37 +959,37 @@ with tab_contact:
     st.markdown('<div class="body-wrapper">', unsafe_allow_html=True)
 
     with col_info:
-    st.markdown(
-        """
-    <div class="section-kicker">Get in touch</div>
-    <div class="section-title">Contact</div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    contact_data = cv_data["contact"]  # use cv_data directly, not the outer `c`
-
-    contact_items = [
-        ("✉", "Email",    f'<a href="mailto:{contact_data["email"]}" style="color: var(--accent);">{contact_data["email"]}</a>'),
-        ("📱", "Phone",    contact_data["phone"]),
-        ("◎", "Location", contact_data["location"]),
-        ("⌥", "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color: var(--accent);">github.com/{contact_data["github"].rstrip("/").split("/")[-1]}</a>'),
-        ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color: var(--accent);">linkedin.com/in/{contact_data["linkedin"].rstrip("/").split("/")[-1]}</a>'),
-    ]
-
-    items_html = ""
-    for icon, label, val in contact_items:
-        items_html += f"""
-        <div class="contact-item">
-            <div class="contact-icon">{icon}</div>
-            <div>
-                <div class="contact-label">{label}</div>
-                <div class="contact-val">{val}</div>
+        st.markdown(
+            """
+        <div class="section-kicker">Get in touch</div>
+        <div class="section-title">Contact</div>
+        """,
+            unsafe_allow_html=True,
+        )
+    
+        contact_data = cv_data["contact"]  # use cv_data directly, not the outer `c`
+    
+        contact_items = [
+            ("✉", "Email",    f'<a href="mailto:{contact_data["email"]}" style="color: var(--accent);">{contact_data["email"]}</a>'),
+            ("📱", "Phone",    contact_data["phone"]),
+            ("◎", "Location", contact_data["location"]),
+            ("⌥", "GitHub",   f'<a href="{contact_data["github"]}" target="_blank" style="color: var(--accent);">github.com/{contact_data["github"].rstrip("/").split("/")[-1]}</a>'),
+            ("↗", "LinkedIn", f'<a href="{contact_data["linkedin"]}" target="_blank" style="color: var(--accent);">linkedin.com/in/{contact_data["linkedin"].rstrip("/").split("/")[-1]}</a>'),
+        ]
+    
+        items_html = ""
+        for icon, label, val in contact_items:
+            items_html += f"""
+            <div class="contact-item">
+                <div class="contact-icon">{icon}</div>
+                <div>
+                    <div class="contact-label">{label}</div>
+                    <div class="contact-val">{val}</div>
+                </div>
             </div>
-        </div>
-        """
-
-    st.markdown(f'<div class="card" style="padding: 8px 24px;">{items_html}</div>', unsafe_allow_html=True)
+            """
+    
+        st.markdown(f'<div class="card" style="padding: 8px 24px;">{items_html}</div>', unsafe_allow_html=True)
 
     with col_form:
         st.markdown(
